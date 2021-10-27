@@ -60,6 +60,28 @@ def draw(string, trans):
 			elif "nop" == trans[el][0]:
 				pass
 
+# Check if the input file has correct input data
+def checkData(data, axiom, rules, alph, trans):
+	if axiom = '':
+		return False
+
+	# Check if every elemnt used is part of the given alphabet in the input file
+	for el in axiom:
+		if not el in alph:
+			return False
+
+	for el in rules:
+		if not el in alph:
+			return False
+		if not rules[el] in alph:
+			return False
+
+	for el in trans:
+		if not el in alph:
+			return False
+		if not rules[el] in alph:
+			return False
+
 # Main function
 def main():
 
@@ -70,6 +92,10 @@ def main():
 
 	data = getData(file)
 	axiom, rules, alph, trans = getVariables(data)
+
+	if checkData(axiom, rules, alph, trans) == False:
+		print("The given input file is not a correct input file")
+		return
 
 	lstring = lSystem(axiom, rules, iter)
 	print(lstring)
