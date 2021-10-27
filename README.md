@@ -13,7 +13,7 @@ python3 -m venv l-venv
 ```
 
 Use the virtual environment.
-````bash
+```bash
 source l-venv/bin/activate
 ```
 
