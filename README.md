@@ -1,7 +1,7 @@
 # l-system
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
-## Installatie
+## Installation 
 Clone this repository to your local computer.
 ```bash
 git clone https://github.com/crearth/l-system.git
