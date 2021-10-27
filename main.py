@@ -12,9 +12,9 @@ data = json.load(f)
 
 # Making variables in python with information from file
 axiom = data['axiom']
-rules = list(data['rules'])
-alph = list(data['alph'])
-trans = list(data['trans'])
+rules = data['rules']
+alph = data['alph']
+trans = data['trans']
 
 # Closing file
 f.close()
