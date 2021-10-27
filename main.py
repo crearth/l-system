@@ -82,6 +82,20 @@ def checkData(data, axiom, rules, alph, trans):
 		if not rules[el] in alph:
 			return False
 
+	return True
+
+# Check if input file contains needed variables
+def checkFile(data):
+	if not data['axiom'] in data:
+		return False
+        if not data['rules'] in data:
+		return False
+        if not data['alph'] in data:
+		return False
+        if not data['trans'] in data:
+		return False
+	return True
+
 # Main function
 def main():
 
@@ -91,6 +105,9 @@ def main():
 	iter = int(input("How many iterations of the given l-system do you want to preform?: "))
 
 	data = getData(file)
+	if checkFile(data) == False:
+		print("The given input file is not a correct input file")
+		return
 	axiom, rules, alph, trans = getVariables(data)
 
 	if checkData(axiom, rules, alph, trans) == False:
