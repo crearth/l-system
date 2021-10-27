@@ -21,3 +21,8 @@ Install the packages via pip.
 ```bash
 pip install -r requirements.txt
 ```
+
+Install the tkinter package.
+```bash
+sudo apt-get install python3-tk
+```
