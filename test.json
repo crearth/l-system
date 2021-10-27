@@ -1,0 +1,6 @@
+{
+	"axiom": "A"
+	"rules": { "A" : "AB"}
+	"alph": { "A" , "B" }
+	"trans": { "A" : "print('A')" , "B" : "print('b')" }
+}
