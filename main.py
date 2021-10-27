@@ -4,15 +4,13 @@ import json
 # Getting input on what json file to use
 def getFile():
 	file = input("What is the name of the json file with the inputs?: ")
-	# Loading in input file
-	f  = open(file)
+	f  = open(file) # Load in input file
 	return f
 
 # Get information of json file in dictionary
 def getData(f):
 	data = json.load(f)
-	# Close file after getting information in data
-	f.close()
+	f.close() # Close file after getting information in data
 	return data
 
 # Making variables in python with information from file
@@ -23,7 +21,7 @@ def getVariables(data):
 	trans = data['trans']
 	return axiom, rules, alph, trans
 
-# L-system function
+# Apply the logic of an l-system
 def lSystem(axiom, rules, iter):
 
 	new_string = ''
@@ -40,7 +38,7 @@ def lSystem(axiom, rules, iter):
 
 	return old_string
 
-# Define main function
+# Main function
 def main():
 
 	file = getFile()
