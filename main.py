@@ -43,6 +43,7 @@ def lSystem(axiom, rules, iter):
 def draw(string, trans):
 	screen = tur.getscreen() # Make new screen where the drawing will cmom
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
+	t.hideturtle()
 
 	for el in string:
 		if el in trans: # Check if the el can get translated
@@ -63,13 +64,15 @@ def draw(string, trans):
 def main():
 
 	file = getFile()
+
+	# Get input on how many iterations the user wants to preform
+	iter = int(input("How many iterations of the given l-system do you want to preform?: "))
+
 	data = getData(file)
 	axiom, rules, alph, trans = getVariables(data)
 
-	# Getting input on how many iterations are needed
-	iter = int(input("How many iterations of the given l-system do you want?: "))
-
 	lstring = lSystem(axiom, rules, iter)
+	print(lstring)
 	draw(lstring, trans)
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
 
