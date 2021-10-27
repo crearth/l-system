@@ -12,6 +12,11 @@ Configure a python virtual environment with [venv](https://docs.python.org/3/lib
 python3 -m venv l-venv
 ```
 
+Use the virtual environment.
+````bash
+source l-venv/bin/activate
+```
+
 Install the packages via pip.
 ```bash
 pip install -r requirements.txt
