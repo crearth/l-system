@@ -1,7 +1,18 @@
 # l-system
-Schoolproject voor informaticawerktuigen.
+Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## Installatie
-	1. Clone deze repository via git clone https://github.com/crearth/l-system.git
-	2. Configureer een python virtual environment
-	3. Installeer de nodige packages via pip install -r requirements.txt
+Clone this repository to your local computer.
+```bash
+git clone https://github.com/crearth/l-system.git
+```
+
+Configure a python virtual environment with [venv](https://docs.python.org/3/library/venv.html).
+```bash
+python3 -m venv l-venv
+```
+
+Install the packages via pip.
+```bash
+pip install -r requirements.txt
+```

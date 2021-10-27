@@ -1,4 +1,5 @@
 .venv
 venv/
 project/
+l-venv/
 venv.bak/
