@@ -2,5 +2,5 @@
 	"axiom": "A",
 	"rules": { "A" : "AB" },
 	"alph": [ "A" , "B" ],
-	"trans": { "A" : "print('A')" , "B" : "print('b')" }
+	"trans": { "A" : ["drawLine" , 1] , "B" : ["rotate" , 25] }
 }
