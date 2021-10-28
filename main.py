@@ -46,6 +46,9 @@ def draw(string, trans):
 	screen = tur.getscreen() # Make new screen where the drawing will cmom
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle()
+	t.setheading(90) # Set starting position of turtle heading up
+
+	stack = [] # Stack will be used to push and pop between positions
 
 	for el in string:
 		if el in trans: # Check if the el can get translated
@@ -61,6 +64,16 @@ def draw(string, trans):
 				t.pendown() # Dropping pen, draw again
 			elif "nop" == trans[el][0]:
 				pass
+			elif "push" == trans[el][0]:
+				stack.append((t.pos(), t.heading()))
+				print(stack)
+			elif "pop" == trans[el][0]:
+				t.penup()
+				t.setpos(stack[len(stack)-1][0])
+				t.setheading(stack[len(stack)-1][1])
+				t.pendown()
+				stack.pop(len(stack)-1)
+				print(stack)
 
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
@@ -145,7 +158,7 @@ def main():
 
 	# Used_funtions is a list of the possible translations that reffer to a function
 	# When you add more possible functions, add the translations of the function in the used_functions below
-	used_functions = ("draw", "angle", "forward", "nop")
+	used_functions = ("draw", "angle", "forward", "nop", "push", "pop")
 
 	data = getData(file)
 	if checkFile(data) == False:
