@@ -1,0 +1,2 @@
+28/10/2021 12:00:40	['A', 'B']	A	{'A': 'AB', 'B': 'AB'}	{'A': ['draw', 100], 'B': ['angle', 100]}	3	ABABABAB
+28/10/2021 12:00:47	['A', 'B']	A	{'A': 'AB', 'B': 'AB'}	{'A': ['draw', 100], 'B': ['angle', 100]}	5	ABABABABABABABABABABABABABABABAB
