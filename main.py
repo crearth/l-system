@@ -69,41 +69,41 @@ def checkData(axiom, rules, alph, trans, pos_translations):
 	# Check if every elemnt used is part of the given alphabet in the input file
 	if not isinstance(axiom, str):
 		return False
-	for el in axiom:
-		if not el in alph:
+	for symbol in axiom:
+		if not symbol in alph:
 			return False
 
 	if not isinstance(rules, dict):
 		return False
-	for el in rules:
-		if not el in alph:
+	for rule in rules:
+		if not rule in alph: # Rules is a dictionary, rule is a key
 			return False
-		for item in rules[el]:
-			if item not in alph:
+		for symbol in rules[rule]: # Symbol is every symbol in the value of the given key
+			if symbol not in alph:
 				return False
-		if not isinstance(el, str):
+		if not isinstance(rule, str):
 			return False
-		if not isinstance(rules[el], str):
+		if not isinstance(rules[rule], str):
 			return False
 
 	if not isinstance(alph, list):
 		return False
-	for el in alph:
-		if not isinstance(el, str):
+	for symbol in alph:
+		if not isinstance(symbol, str):
 			return False
 
 	if not isinstance(trans, dict):
 		return False
-	for el in trans:
-		if not el in alph:
+	for tran in trans: # Trans is a dictionary, tran is a key in trans
+		if not tran in alph:
 			return False
-		if not isinstance(trans[el] , list):
+		if not isinstance(trans[tran] , list): # Trans[tran] is the value of the key 
 			return False
-		if not isinstance(trans[el][0], str):
+		if not isinstance(trans[tran][0], str): # Trans[tran][1] is the second item in the value of the key, the value is a list
 			return False
-		if not isinstance(trans[el][1], int):
+		if not isinstance(trans[tran][1], int):
 			return False
-		if not trans[el][0] in pos_translations:
+		if not trans[tran][0] in pos_translations: # Check if the translation is supported by the program
 			return False
 
 	return True
@@ -124,7 +124,7 @@ def checkFile(data):
 # Write system history to file
 def addHistory(axiom, rules, alph, trans, iterations, lstring):
 	f = open("history.txt","a")
-	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")	
+	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 	f.write(timestamp + "\t" + axiom + "\t" + rules + "\t" + alph + "\t" + trans + "\t" + iterations + "\t" + lstring)	
 
 # Main function
@@ -136,6 +136,7 @@ def main():
 	iter = int(input("How many iterations of the given l-system do you want to preform?: "))
 
 	# Used_funtions is a list of the possible translations that reffer to a function
+	# When you add more possible functions, add the translations of the function in the used_functions below
 	used_functions = ("draw", "angle", "forward", "nop")
 
 	data = getData(file)
