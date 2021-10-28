@@ -1,0 +1,7 @@
+{
+	"axiom": "A",
+	"rules": { "A" : "AB" , "B" : "A" },
+	"variables": ["A", "B"]
+	"constants": [],
+	"trans": { "A" : ["draw", 100] , "B" : [angle" , 150] }
+}
