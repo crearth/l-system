@@ -61,24 +61,48 @@ def draw(string, trans):
 				pass
 
 # Check if the input file has correct input data
-def checkData(axiom, rules, alph, trans):
+def checkData(axiom, rules, alph, trans, pos_translations):
 	if axiom == '':
 		return False
 
 	# Check if every elemnt used is part of the given alphabet in the input file
+	if not isinstance(axiom, str):
+		return False
 	for el in axiom:
 		if not el in alph:
 			return False
 
+	if not isinstance(rules, dict):
+		return False
 	for el in rules:
 		if not el in alph:
 			return False
 		for item in rules[el]:
 			if item not in alph:
 				return False
+		if not isinstance(el, str):
+			return False
+		if not isinstance(rules[el], str):
+			return False
 
+	if not isinstance(alph, list):
+		return False
+	for el in alph:
+		if not isinstance(el, str):
+			return False
+
+	if not isinstance(trans, dict):
+		return False
 	for el in trans:
 		if not el in alph:
+			return False
+		if not isinstance(trans[el] , list):
+			return False
+		if not isinstance(trans[el][0], str):
+			return False
+		if not isinstance(trans[el][1], int):
+			return False
+		if not trans[el][0] in pos_translations:
 			return False
 
 	return True
@@ -86,7 +110,6 @@ def checkData(axiom, rules, alph, trans):
 # Check if input file contains needed variables
 def checkFile(data):
 	if not "axiom" in data:
-		print("No axiom")
 		return False
 	if not "rules" in data:
 		return False
@@ -94,6 +117,7 @@ def checkFile(data):
 		return False
 	if not "trans" in data:
 		return False
+
 	return True
 
 # Main function
@@ -104,14 +128,17 @@ def main():
 	# Get input on how many iterations the user wants to preform
 	iter = int(input("How many iterations of the given l-system do you want to preform?: "))
 
+	# Used_funtions is a list of the possible translations that reffer to a function
+	used_functions = ("draw", "angle", "forward", "nop")
+
 	data = getData(file)
 	if checkFile(data) == False:
-		print("CheckFile == False")
+		print("The given input file is not contain the needed variabes.")
 		return
 	axiom, rules, alph, trans = getVariables(data)
 
-	if checkData(axiom, rules, alph, trans) == False:
-		print("CheckData == False")
+	if checkData(axiom, rules, alph, trans, used_functions) == False:
+		print("The given variables in the input file are not correct.")
 		return
 
 	lstring = lSystem(axiom, rules, iter)
