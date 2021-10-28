@@ -1,6 +1,7 @@
 # Import libraries
 import json
 import turtle as tur
+from datetime import datetime
 
 # Getting input on what json file to use
 def getFile():
@@ -96,6 +97,12 @@ def checkFile(data):
 		return False
 	return True
 
+# Write system history to file
+def addHistory(axiom, rules, alph, trans, iterations, lstring):
+	f = open("history.txt","a")
+	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")	
+	f.write(timestamp + "\t" + axiom + "\t" + rules + "\t" + alph + "\t" + trans + "\t" + iterations + "\t" + lstring)	
+
 # Main function
 def main():
 
@@ -115,6 +122,7 @@ def main():
 		return
 
 	lstring = lSystem(axiom, rules, iter)
+	addHistory(axiom, rules, alph, trans, iter, lstring)
 	print(lstring)
 	draw(lstring, trans)
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
