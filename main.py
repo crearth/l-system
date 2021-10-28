@@ -65,15 +65,13 @@ def draw(string, trans):
 			elif "nop" == trans[symbol][0]:
 				pass
 			elif "push" == trans[symbol][0]:
-				stack.append((t.pos(), t.heading()))
-				print(stack)
+				stack.append((t.pos(), t.heading())) # Add the current position and heading to stack
 			elif "pop" == trans[symbol][0]:
 				t.penup()
-				t.setpos(stack[len(stack)-1][0])
+				t.setpos(stack[len(stack)-1][0]) # Set position and heading to last item in stack
 				t.setheading(stack[len(stack)-1][1])
 				t.pendown()
-				stack.pop(len(stack)-1)
-				print(stack)
+				stack.pop(len(stack)-1) # Remove last item from stack
 
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
