@@ -50,24 +50,24 @@ def draw(string, trans):
 
 	stack = [] # Stack will be used to push and pop between positions
 
-	for el in string:
-		if el in trans: # Check if the el can get translated
-			para = trans[el][1] # Para is the parameter that will be put in the used fuction
-			if "draw" == trans[el][0]:
+	for symbol in string:
+		if symbol in trans: # Check if the el can get translated
+			para = trans[symbol][1] # Para is the parameter that will be put in the used fuction
+			if "draw" == trans[symbol][0]:
 				t.forward(para) # Draw line with length para
-			elif "angle" == trans[el][0]:
+			elif "angle" == trans[symbol][0]:
 				t.left(para) # Rotate to the left with "para" degrees
-			elif "forward" == trans[el][0]:
+			elif "forward" == trans[symbol][0]:
 				# Move forward without drawing a line
 				t.penup() # Raising pen
 				t.forward(para) # Moving
 				t.pendown() # Dropping pen, draw again
-			elif "nop" == trans[el][0]:
+			elif "nop" == trans[symbol][0]:
 				pass
-			elif "push" == trans[el][0]:
+			elif "push" == trans[symbol][0]:
 				stack.append((t.pos(), t.heading()))
 				print(stack)
-			elif "pop" == trans[el][0]:
+			elif "pop" == trans[symbol][0]:
 				t.penup()
 				t.setpos(stack[len(stack)-1][0])
 				t.setheading(stack[len(stack)-1][1])
