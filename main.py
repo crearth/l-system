@@ -147,10 +147,10 @@ def checkFile(data):
 	return True
 
 # Write system history to file
-def addHistory(axiom, rules, alph, trans, iterations, lstring):
+def addHistory(axiom, rules, alph, trans, iterations, lstring, variables, constants):
 	f = open("history.txt","a")
 	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-	f.write(timestamp + "\t" + str(alph) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
+	f.write(timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
 
 # Make alphabet variable
 def makeAlph(variables, constants):
@@ -182,7 +182,7 @@ def main():
 		return
 
 	lstring = lSystem(axiom, rules, iter)
-	addHistory(axiom, rules, alph, trans, iter, lstring)
+	addHistory(axiom, rules, alph, trans, iter, lstring, variables, constants)
 	print(lstring)
 	draw(lstring, trans)
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
