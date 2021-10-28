@@ -61,7 +61,7 @@ def draw(string, trans):
 				pass
 
 # Check if the input file has correct input data
-def checkData(data, axiom, rules, alph, trans):
+def checkData(axiom, rules, alph, trans):
 	if axiom == '':
 		return False
 
@@ -73,26 +73,26 @@ def checkData(data, axiom, rules, alph, trans):
 	for el in rules:
 		if not el in alph:
 			return False
-		if not rules[el] in alph:
-			return False
+		for item in rules[el]:
+			if item not in alph:
+				return False
 
 	for el in trans:
 		if not el in alph:
-			return False
-		if not rules[el] in alph:
 			return False
 
 	return True
 
 # Check if input file contains needed variables
 def checkFile(data):
-	if not data['axiom'] in data:
+	if not "axiom" in data:
+		print("No axiom")
 		return False
-        if not data['rules'] in data:
+	if not "rules" in data:
 		return False
-        if not data['alph'] in data:
+	if not "alph" in data:
 		return False
-        if not data['trans'] in data:
+	if not "trans" in data:
 		return False
 	return True
 
@@ -106,12 +106,12 @@ def main():
 
 	data = getData(file)
 	if checkFile(data) == False:
-		print("The given input file is not a correct input file")
+		print("CheckFile == False")
 		return
 	axiom, rules, alph, trans = getVariables(data)
 
 	if checkData(axiom, rules, alph, trans) == False:
-		print("The given input file is not a correct input file")
+		print("CheckData == False")
 		return
 
 	lstring = lSystem(axiom, rules, iter)
