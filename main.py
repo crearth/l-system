@@ -125,7 +125,7 @@ def checkFile(data):
 def addHistory(axiom, rules, alph, trans, iterations, lstring):
 	f = open("history.txt","a")
 	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-	f.write(timestamp + "\t" + axiom + "\t" + rules + "\t" + alph + "\t" + trans + "\t" + iterations + "\t" + lstring)	
+	f.write(timestamp + "\t" + str(alph) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
 
 # Main function
 def main():
