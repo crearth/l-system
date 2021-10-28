@@ -41,6 +41,11 @@ def lSystem(axiom, rules, iter):
 
 	return old_string
 
+# Change the color of the drawing
+def setColor(color, t):
+	t.pencolor(color)
+	return t
+
 # Draw the given string by using the translations
 def draw(string, trans):
 	screen = tur.getscreen() # Make new screen where the drawing will cmom
@@ -72,6 +77,8 @@ def draw(string, trans):
 				t.setheading(stack[len(stack)-1][1])
 				t.pendown()
 				stack.pop(len(stack)-1) # Remove last item from stack
+			elif "color" == trans[symbol][0]:
+				setColor(trans[symbol][1], t)
 
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
@@ -113,8 +120,12 @@ def checkData(axiom, rules, alph, trans, pos_translations):
 			return False
 		if not isinstance(trans[tran][0], str): # Trans[tran][1] is the second item in the value of the key, the value is a list
 			return False
-		if not isinstance(trans[tran][1], int):
-			return False
+		if trans[tran][0] == "color": # When the function is color, we need a string not a value
+			if not isinstance(trans[tran][1], str):
+				return False
+		else:
+			if not isinstance(trans[tran][1], int):
+				return False
 		if not trans[tran][0] in pos_translations: # Check if the translation is supported by the program
 			return False
 
@@ -156,12 +167,13 @@ def main():
 
 	# Used_funtions is a list of the possible translations that reffer to a function
 	# When you add more possible functions, add the translations of the function in the used_functions below
-	used_functions = ("draw", "angle", "forward", "nop", "push", "pop")
+	used_functions = ("draw", "angle", "forward", "nop", "push", "pop", "color")
 
 	data = getData(file)
 	if checkFile(data) == False:
 		print("The given input file is not contain the needed variabes.")
 		return
+
 	axiom, rules, variables, constants, trans = getVariables(data)
 	alph = makeAlph(variables, constants)
 
