@@ -19,9 +19,10 @@ def getData(f):
 def getVariables(data):
 	axiom = data['axiom']
 	rules = data['rules']
-	alph = data['alph']
+	variables = data['variables']
+	constants = data['constants']
 	trans = data['trans']
-	return axiom, rules, alph, trans
+	return axiom, rules, variables, constants, trans
 
 # Apply the logic of an l-system
 def lSystem(axiom, rules, iter):
@@ -114,7 +115,9 @@ def checkFile(data):
 		return False
 	if not "rules" in data:
 		return False
-	if not "alph" in data:
+	if not "variables" in data:
+		return False
+	if not "constants" in data:
 		return False
 	if not "trans" in data:
 		return False
@@ -126,6 +129,11 @@ def addHistory(axiom, rules, alph, trans, iterations, lstring):
 	f = open("history.txt","a")
 	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 	f.write(timestamp + "\t" + str(alph) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
+
+# Make alphabet variable
+def makeAlph(variables, constants):
+	alph = variables + constants
+	return alph
 
 # Main function
 def main():
@@ -143,7 +151,8 @@ def main():
 	if checkFile(data) == False:
 		print("The given input file is not contain the needed variabes.")
 		return
-	axiom, rules, alph, trans = getVariables(data)
+	axiom, rules, variables, constants, trans = getVariables(data)
+	alph = makeAlph(variables, constants)
 
 	if checkData(axiom, rules, alph, trans, used_functions) == False:
 		print("The given variables in the input file are not correct.")
