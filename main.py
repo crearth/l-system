@@ -150,7 +150,7 @@ def checkFile(data):
 def addHistory(axiom, rules, alph, trans, iterations, lstring, variables, constants):
 	f = open("history.txt","a")
 	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-	f.write(timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
+	f.write(timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
 
 # Make alphabet variable
 def makeAlph(variables, constants):
