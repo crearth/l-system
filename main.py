@@ -62,7 +62,7 @@ def draw(string, trans):
 
 # Check if the input file has correct input data
 def checkData(data, axiom, rules, alph, trans):
-	if axiom = '':
+	if axiom == '':
 		return False
 
 	# Check if every elemnt used is part of the given alphabet in the input file
