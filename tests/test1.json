@@ -1,6 +1,7 @@
 {
 	"axiom": "A",
 	"rules": { "A" : "AB" , "B" : "AB" },
-	"alph": [ "A" , "B" ],
+	"variables": [ "A" , "B" ],
+	"constants": [],
 	"trans": { "A" : ["draw" , 100] , "B" : ["angle" , 100] }
 }
