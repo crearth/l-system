@@ -5,4 +5,7 @@ l-venv/
 venv.bak/
 
 history.txt
+test.eps
+*.eps
+
 .DS_Store
