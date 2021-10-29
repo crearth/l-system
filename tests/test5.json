@@ -1,0 +1,8 @@
+{
+        "axiom": "F-G-G",
+        "rules": { "F" : "F-G+F+G-F" , "G" : "GG" },
+        "variables": ["F", "G"],
+        "constants": ["+" , "-"],
+        "trans": { "F" : ["draw", 10] , "G" : ["draw" , 10] , "+" : ["angle", 120] , "-" : ["angle" , -120] }
+}
+
