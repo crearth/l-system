@@ -5,20 +5,35 @@ from datetime import datetime
 
 # Getting input on what json file to use
 def getFile():
+	"""
+	Input: None
+	----------
+	Output: Return file that is given by the user of the program
+	"""
 	file = input("What is the name of the json file with the inputs?: ")
 	f  = open(file) # Load in input file
 	return f
 
 # Get information of json file in dictionary
 def getData(f):
+	"""
+	Input: File
+	----------
+	Output: Return a dictionary of the content of the given file 
+	"""
 	data = json.load(f)
 	f.close() # Close file after getting information in data
 	return data
 
 # Making variables in python with information from file
 def getVariables(data):
+	"""
+	Input: Dictionary with neede variables for an l-system
+	----------
+	Output: Return the needed variables for an l-system
+	"""
 	axiom = data['axiom']
-	rules = data['rules']
+	rules = data['rule']
 	variables = data['variables']
 	constants = data['constants']
 	trans = data['trans']
@@ -26,7 +41,11 @@ def getVariables(data):
 
 # Apply the logic of an l-system
 def lSystem(axiom, rules, iter):
-
+	"""
+	Input: Axiom = string, rules = dictionary, iterations (iter) = int
+	----------
+	Output: The resulting string after preforming the l-system with the inputs
+	"""
 	new_string = ''
 	old_string = axiom # Sart with the axiom
 
@@ -43,11 +62,21 @@ def lSystem(axiom, rules, iter):
 
 # Change the color of the drawing
 def setColor(color, t):
+	"""
+	Input: Color = string (with name of a color), t = a python turtle
+	----------
+	Output: Python turtle with the given color
+	"""
 	t.pencolor(color)
 	return t
 
 # Draw the given string by using the translations
 def draw(string, trans):
+	"""
+	Input: String (the end result of an l-system), translations (trans) = dictionary (the trans of the used l-system
+	----------
+	Output: No return, will draw the given string by the given translations
+	"""
 	screen = tur.getscreen() # Make new screen where the drawing will cmom
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle()
@@ -82,17 +111,22 @@ def draw(string, trans):
 
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
-	if axiom == '':
+	"""
+	Input: All the variables of an l-system and the translations of the string that our program supports
+		axiom = string, rules = dictionary, alph = list, trans = list, pos_translations = list (supported translations)
+	----------
+	Output: Return False if the data is not the correct data to preform an l-system
+	"""
+	if axiom == '': # We need an axiom to start the program
 		return False
 
-	# Check if every elemnt used is part of the given alphabet in the input file
-	if not isinstance(axiom, str):
+	if not isinstance(axiom, str): # Check if axiom is a string
 		return False
-	for symbol in axiom:
+	for symbol in axiom: # Check if every symbol in axiom is in the alphabet
 		if not symbol in alph:
 			return False
 
-	if not isinstance(rules, dict):
+	if not isinstance(rules, dict): # Check if rules is a dictionary
 		return False
 	for rule in rules:
 		if not rule in alph: # Rules is a dictionary, rule is a key
@@ -105,9 +139,9 @@ def checkData(axiom, rules, alph, trans, pos_translations):
 		if not isinstance(rules[rule], str):
 			return False
 
-	if not isinstance(alph, list):
+	if not isinstance(alph, list): # Check if the alphabet is a list
 		return False
-	for symbol in alph:
+	for symbol in alph: # Check if every symbol in the alphabet is a string
 		if not isinstance(symbol, str):
 			return False
 
@@ -129,10 +163,13 @@ def checkData(axiom, rules, alph, trans, pos_translations):
 		if not trans[tran][0] in pos_translations: # Check if the translation is supported by the program
 			return False
 
-	return True
-
 # Check if input file contains needed variables
 def checkFile(data):
+	"""
+	Input: List (data of the input file)
+	----------
+	Output: Return False if the needed variables are not in the input file
+	"""
 	if not "axiom" in data:
 		return False
 	if not "rules" in data:
@@ -148,12 +185,22 @@ def checkFile(data):
 
 # Write system history to file
 def addHistory(axiom, rules, alph, trans, iterations, lstring, variables, constants):
+	"""
+	Input: All variables that need to be stored in the history file
+	----------
+	Output: Add a line with the variables to history.txt
+	"""
 	f = open("history.txt","a")
 	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 	f.write(timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
 
 # Make alphabet variable
 def makeAlph(variables, constants):
+	"""
+	Input: Variables = list, constants = list
+	----------
+	Output: List (The alphabet of the l-system = variables + constants)
+	"""
 	alph = variables + constants
 	return alph
 
