@@ -81,6 +81,7 @@ def draw(string, trans):
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle()
 	t.setheading(90) # Set starting position of turtle heading up
+	t.speed(0)
 
 	stack = [] # Stack will be used to push and pop between positions
 
