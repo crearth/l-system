@@ -77,7 +77,7 @@ def draw(string, trans):
 	----------
 	Output: No return, will draw the given string by the given translations
 	"""
-	screen = tur.getscreen() # Make new screen where the drawing will cmom
+	screen = tur.getscreen() # Make new screen where the drawing will come
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle()
 	t.setheading(90) # Set starting position of turtle heading up
@@ -204,6 +204,9 @@ def makeAlph(variables, constants):
 	"""
 	alph = variables + constants
 	return alph
+
+def exportImage(imageName):	
+	return
 
 # Main function
 def main():
