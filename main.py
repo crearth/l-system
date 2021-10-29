@@ -2,6 +2,7 @@
 import json
 import turtle as tur
 from datetime import datetime
+import sys, getopt
 
 # Getting input on what json file to use
 def getFile():
@@ -71,7 +72,7 @@ def setColor(color, t):
 	return t
 
 # Draw the given string by using the translations
-def draw(string, trans):
+def draw(string, trans, imageName):
 	"""
 	Input: String (the end result of an l-system), translations (trans) = dictionary (the trans of the used l-system
 	----------
@@ -109,6 +110,7 @@ def draw(string, trans):
 				stack.pop(len(stack)-1) # Remove last item from stack
 			elif "color" == trans[symbol][0]:
 				setColor(trans[symbol][1], t)
+	screen.getcanvas().postscript(file=imageName)
 
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
@@ -205,8 +207,16 @@ def makeAlph(variables, constants):
 	alph = variables + constants
 	return alph
 
-def exportImage(imageName):	
-	return
+def getArguments(argv):
+	outputfile = ''
+	try:
+		opts, args = getopt.getopt(argv,"e",["export="])
+	except getopt.GetoptError:
+		print("main.py --export <filename>")
+	for opt, arg in opts:
+		if opt in ("-e", "--export"):
+			outputfile = arg
+	print('input file',inputfile)
 
 # Main function
 def main():
@@ -235,7 +245,7 @@ def main():
 	lstring = lSystem(axiom, rules, iter)
 	addHistory(axiom, rules, alph, trans, iter, lstring, variables, constants)
 	print(lstring)
-	draw(lstring, trans)
+	draw(lstring, trans, "test.eps")
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
 
 main()
