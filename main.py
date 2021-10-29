@@ -112,7 +112,7 @@ def draw(string, trans, imageName):
 				setColor(trans[symbol][1], t)
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
-	
+
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
 	"""
