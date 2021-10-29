@@ -158,7 +158,7 @@ def checkData(axiom, rules, alph, trans, pos_translations):
 			if not isinstance(trans[tran][1], str):
 				return False
 		else:
-			if not isinstance(trans[tran][1], int):
+			if not (isinstance(trans[tran][1], int) or isinstance(trans[tran][1], float)):
 				return False
 		if not trans[tran][0] in pos_translations: # Check if the translation is supported by the program
 			return False
