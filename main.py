@@ -33,7 +33,7 @@ def getVariables(data):
 	Output: Return the needed variables for an l-system
 	"""
 	axiom = data['axiom']
-	rules = data['rule']
+	rules = data['rules']
 	variables = data['variables']
 	constants = data['constants']
 	trans = data['trans']
