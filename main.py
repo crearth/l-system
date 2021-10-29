@@ -110,8 +110,9 @@ def draw(string, trans, imageName):
 				stack.pop(len(stack)-1) # Remove last item from stack
 			elif "color" == trans[symbol][0]:
 				setColor(trans[symbol][1], t)
-	screen.getcanvas().postscript(file=imageName)
-
+	if imageName != None:
+		screen.getcanvas().postscript(file=imageName)
+	
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
 	"""
@@ -217,6 +218,7 @@ def getArguments(argv):
 		if opt in ("-e", "--export"):
 			outputfile = arg
 	print('input file',inputfile)
+	return outputfile
 
 # Main function
 def main():
