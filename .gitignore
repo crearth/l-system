@@ -1,11 +1,20 @@
+# python virtual environments
 .venv
 venv/
 project/
 l-venv/
 venv.bak/
 
+# history file
 history.txt
+
+# eps files (exports)
 test.eps
 *.eps
 
+# vim swap files
+*.swp
+*.swo
+
+# Apple junk files
 .DS_Store
