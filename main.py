@@ -110,6 +110,8 @@ def draw(string, trans, imageName):
 				stack.pop(len(stack)-1) # Remove last item from stack
 			elif "color" == trans[symbol][0]:
 				setColor(trans[symbol][1], t)
+
+	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
 
@@ -209,11 +211,13 @@ def makeAlph(variables, constants):
 	return alph
 
 def getArguments(argv):
-	outputfile = ''
+	outputfile = '' # Initialize the variable outputfile
 	try:
-		opts, args = getopt.getopt(argv,"-e",["export="])
+		opts, args = getopt.getopt(argv,"-e",["export="]) # Get the options and arguments
 	except getopt.GetoptError:
-		print("main.py --export <filename>")
+		print("main.py --export <filename>") # If there is an error, print how to use the option
+	# Get the options and arguments and set it to the variable outputfile
+	# If there is no option, set outputfile to False
 	for opt, arg in opts:
 		if opt in ("-e", "--export"):
 			outputfile = arg
@@ -250,6 +254,7 @@ def main():
 
 	print(lstring)
 
+	# Give the draw function the name of the file, if there is one
 	argument = getArguments(sys.argv[1:])	
 	if argument != False:
 		draw(lstring, trans, argument)
