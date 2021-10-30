@@ -211,13 +211,14 @@ def makeAlph(variables, constants):
 def getArguments(argv):
 	outputfile = ''
 	try:
-		opts, args = getopt.getopt(argv,"e",["export="])
+		opts, args = getopt.getopt(argv,"-e",["export="])
 	except getopt.GetoptError:
 		print("main.py --export <filename>")
 	for opt, arg in opts:
 		if opt in ("-e", "--export"):
 			outputfile = arg
-	print('input file',inputfile)
+		else:
+			 outputfile = False
 	return outputfile
 
 # Main function
@@ -246,8 +247,15 @@ def main():
 
 	lstring = lSystem(axiom, rules, iter)
 	addHistory(axiom, rules, alph, trans, iter, lstring, variables, constants)
+
 	print(lstring)
-	draw(lstring, trans, "test.eps")
+
+	argument = getArguments(sys.argv[1:])	
+	if argument != False:
+		draw(lstring, trans, argument)
+	else:
+		draw(lstring, trans, None) 
+
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
 
 main()
