@@ -3,7 +3,6 @@ import json
 import turtle as tur
 from datetime import datetime
 import sys, getopt
-import flask
 
 # Getting input on what json file to use
 def getFile():
@@ -256,11 +255,11 @@ def main():
 	print(lstring)
 
 	# Give the draw function the name of the file, if there is one
-	argument = getArguments(sys.argv[1:])	
+	argument = getArguments(sys.argv[1:])
 	if argument != False:
 		draw(lstring, trans, argument)
 	else:
-		draw(lstring, trans, None) 
+		draw(lstring, trans, None)
 
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
 
