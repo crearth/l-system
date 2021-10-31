@@ -114,6 +114,7 @@ def draw(string, trans, imageName):
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
+	screen.getcanvas().postscript(file="templates/lastDrawing.eps")
 
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
