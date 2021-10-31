@@ -3,6 +3,7 @@ import json
 import turtle as tur
 from datetime import datetime
 import sys, getopt
+import flask
 
 # Getting input on what json file to use
 def getFile():
