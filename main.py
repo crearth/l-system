@@ -264,4 +264,6 @@ def main():
 
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
 
-main()
+if __name__ == "__main__":
+   # stuff only to run when not called via 'import' here
+   main()
