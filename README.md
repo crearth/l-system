@@ -63,4 +63,10 @@ You can export the drawed l-system with the following command:
 ```bash
 python3 main.py --export <filename>
 ```
-Replace <filename> with the name of the file you want, followed by the extension .eps.
+Replace `<filename>` with the name of the file you want, followed by the extension .eps.
+
+### Web server
+You can view the information of your latest drawing with the following command:
+```bash
+python3 webPage.py
+```

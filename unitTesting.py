@@ -5,6 +5,7 @@ f = open("./tests/test1.json")
 data = getData(f)
 axiom, rules, variables, constants, trans = getVariables(data)
 
+# Test the lSystem() function
 def test_lSystem(axiom, rules):
 	iter = 4 
 	lstring = lSystem(axiom, rules, iter)
