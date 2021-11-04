@@ -14,7 +14,7 @@ trans = split[5]
 iterations = split[6]
 lstring = split[7]
 
-@app.route("/")
+@app.route("/index")
 def home():
 	return render_template("index.html", timestamp=time, variables=variables, constants=constants, axiom=axiom, rules=rules, traslations=trans, iterations=iterations, endstring=lstring)
 
