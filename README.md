@@ -2,18 +2,19 @@
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
-	* complete unit testing with pytest
-	* configure a CI pipeline
-	* history file backups
-	* web server: l-system drawings on web server
-	* docker
+- [ ] complete unit testing with pytest
+- [ ] configure a CI pipeline
+- [ ] history file backups
+- [ ] web server: l-system drawings on web server
+- [ ] docker
+
 ## DONE
-	* l-system itself
-	* system history
-	* checking incorrect input
-	* extended translations (push, pop, color)
-	* exporting l-system drawings
-	* base of web server
+- [x] l-system itself
+- [x] system history
+- [x] checking incorrect input
+- [x] extended translations (push, pop, color)
+- [x] exporting l-system drawings
+- [x] base of web server
 
 ## Installation
 Clone this repository to your local computer.
