@@ -3,6 +3,7 @@ import json
 import turtle as tur
 from datetime import datetime
 import sys, getopt
+from PIL import Image
 
 # Getting input on what json file to use
 def getFile():
@@ -78,7 +79,10 @@ def draw(string, trans, imageName):
 	----------
 	Output: No return, will draw the given string by the given translations
 	"""
-	screen = tur.getscreen() # Make new screen where the drawing will come
+
+	# Setup screen
+	screen = tur.Screen()
+
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle()
 	t.setheading(90) # Set starting position of turtle heading up
@@ -114,7 +118,9 @@ def draw(string, trans, imageName):
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
-	screen.getcanvas().postscript(file="templates/lastDrawing.eps")
+	screen.getcanvas().postscript(file="static/lastDrawing.eps")
+	pic = Image.open("static/lastDrawing.eps")
+	pic.save("static/lastDrawing.jpg")
 
 # Check if the input file has correct input data
 def checkData(axiom, rules, alph, trans, pos_translations):
