@@ -47,13 +47,13 @@ Run the main.py file. It will ask you wich configuration file it should use and 
 
 ### Configuration file
 When you run the main.py file, the program will aks for a configuration file. The configuration file has to be a json file. There is an example.json file in this repository. These are the supported translations:
-	* angle: turn 
-	* draw: draw a line
-	* forward: move forward without drawing a line
-	* nop: do nothing
-	* push: push the current drawing state on the stack
-	* pop: replace the current drawing state with the one on top of the stack
-	* color: change the color from this point to the given name
+* angle: turn 
+* draw: draw a line
+* forward: move forward without drawing a line
+* nop: do nothing
+* push: push the current drawing state on the stack
+* pop: replace the current drawing state with the one on top of the stack
+* color: change the color from this point to the given name
 
 ### History
 A history.txt file will be created when running the main.py for the first time. Every time you run the program, a new line will be added with the configuration information and timestamp.  
