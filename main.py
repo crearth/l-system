@@ -79,7 +79,10 @@ def draw(string, trans, imageName):
 	----------
 	Output: No return, will draw the given string by the given translations
 	"""
-	screen = tur.getscreen() # Make new screen where the drawing will come
+
+	# Setup screen
+	screen = tur.Screen()
+
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle()
 	t.setheading(90) # Set starting position of turtle heading up
