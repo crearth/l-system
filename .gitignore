@@ -12,6 +12,9 @@ history.txt
 test.eps
 *.eps
 
+# jpg files
+*.jpg
+
 # vim swap files
 *.swp
 *.swo
