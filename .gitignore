@@ -14,8 +14,12 @@ test.eps
 
 # jpg files
 *.jpg
+
 # jpg files in /static
 static/*
+
+# backup txt files in /l-systems
+l-systems/*.txt
 
 # vim swap files
 *.swp
