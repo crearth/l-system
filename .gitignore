@@ -1,3 +1,4 @@
+
 # python virtual environments
 .venv
 venv/
@@ -18,8 +19,8 @@ test.eps
 # jpg files in /static
 static/*
 
-# backup txt files in /l-systems
-l-systems/*.txt
+# backup files in /l-systems
+l-systems/*
 
 # vim swap files
 *.swp
