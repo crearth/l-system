@@ -3,7 +3,7 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] unit testing: add history check
-- [ ] history file backups
+- [ ] restoring database from a backup
 - [ ] docker
 
 ## DONE
@@ -15,6 +15,7 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] base of web server
 - [x] web server: l-system drawings on web server
 - [x] configure a CI pipeline
+- [x] history file backups
 
 ## Installation
 Clone this repository to your local computer.
@@ -58,6 +59,12 @@ When you run the main.py file, the program will aks for a configuration file. Th
 ### History
 A history.txt file will be created when running the main.py for the first time. Every time you run the program, a new line will be added with the configuration information and timestamp.  
 
+### History backups
+If you wish, you can make backups on a hourly rate with the bash script `backup.sh`. Add the following to your crontab (command crontab -e):
+```bash
+*0 * * * * cd /path/to/the/project/ && ./backup.sh >/dev/null 2>&1
+``` 
+
 ### Exporting the drawing
 Currently, only .eps files are supported.
 You can export the drawed l-system with the following command:
@@ -67,7 +74,8 @@ python3 main.py --export <filename>
 Replace `<filename>` with the name of the file you want, followed by the extension .eps.
 
 ### Web server
-You can view the information of your latest drawing with the following command:
+You can view the information and a picture of your latest drawing with the following command:
 ```bash
 python3 webPage.py
 ```
+Access the webpage with this url: `http://localhost:5000/index`.
