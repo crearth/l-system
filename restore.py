@@ -5,10 +5,14 @@ onlyfiles = [f for f in listdir("/home/matias/.l-systems")]
 print("available history files for restore:")
 for f in onlyfiles:
 	print(f)
-x = input("What history file would you like to restore? (0 = break loop): ")
-print(file)
-while x != "0":
-	if x in onlyfiles:
-		history.txt = open("/home/matias/.l-systems/" + x)
+f = input("What history file would you like to restore? (0 = break loop): ")
+file = open("/home/matias/.l-systems/" + f)
+while f != "0":
+	if f in onlyfiles:
+		history = open("history.txt", "r+")
+		history.truncate(0)
+		content = file.read()
+		history.write(content)
+		history.close
 		break
-	x = input("What history file would you like to restore? (0= break loop): ")
+	f = input("What history file would you like to restore? (0= break loop): ")
