@@ -3,10 +3,10 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] unit testing: add history check
-- [ ] restoring database from a backup
 - [ ] docker
 
 ## DONE
+- [x] restoring database from a backup
 - [x] l-system itself
 - [x] system history
 - [x] checking incorrect input

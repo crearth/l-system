@@ -18,6 +18,7 @@ test.eps
 
 # jpg files in /static
 static/*
+!static/.gitkeep
 
 # backup files in /l-systems
 l-systems/*
