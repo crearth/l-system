@@ -2,11 +2,9 @@
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
-- [ ] unit testing: add history check
 - [ ] docker
 
 ## DONE
-- [x] restoring database from a backup
 - [x] l-system itself
 - [x] system history
 - [x] checking incorrect input
@@ -16,6 +14,8 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] web server: l-system drawings on web server
 - [x] configure a CI pipeline
 - [x] history file backups
+- [x] restoring database from a backup
+- [x] unit testing: add 1 history check
 
 ## Installation
 Clone this repository to your local computer.
