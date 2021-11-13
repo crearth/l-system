@@ -197,7 +197,7 @@ def checkFile(data):
 	return True
 
 # Write system history to file
-def addHistory(axiom, rules, alph, trans, iterations, lstring, variables, constants):
+def addHistory(axiom, rules, trans, iterations, lstring, variables, constants):
 	"""
 	Input: All variables that need to be stored in the history file
 	----------
@@ -205,7 +205,9 @@ def addHistory(axiom, rules, alph, trans, iterations, lstring, variables, consta
 	"""
 	f = open("history.txt","a")
 	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-	f.write(timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n")	
+	info = timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n"
+	f.write(info)	
+	return info
 
 # Make alphabet variable
 def makeAlph(variables, constants):
