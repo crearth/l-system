@@ -4,7 +4,7 @@ import pytest
 
 # Test the lSystem function with the test1.json
 def test_1_lSystem():
-	iterations = 4 
+	iterations = 4
 	axiom = "A"
 	rules = { "A" : "A+B" , "B" : "A-B" }
 	lstring = lSystem(axiom, rules, iterations)

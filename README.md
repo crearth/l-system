@@ -62,7 +62,7 @@ A history.txt file will be created when running the main.py for the first time. 
 ### History backups
 If you wish, you can make backups on a hourly rate with the bash script `backup.sh`. Add the following to your crontab (command crontab -e):
 ```bash
-*0 * * * * cd /path/to/the/project/ && ./backup.sh >/dev/null 2>&1
+0 * * * * cd /path/to/the/project/ && ./backup.sh >/dev/null 2>&1
 ``` 
 
 ### Exporting the drawing
