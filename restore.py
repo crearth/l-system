@@ -1,5 +1,5 @@
 # Import needed librarys
-from os import listdir
+from os import listdir, remove
 from os.path import isfile, join
 import getpass
 
@@ -21,5 +21,6 @@ while f != "0": # User can give "0" as input to stop program
 		history.write(content) # Write backup content in history.txt
 		history.close() # Close history file
 		backup.close() # Close backup file
+		remove("static/lastDrawing.jpg") # Removes lastDrawing so it doesn't show up on the webpage
 		break
 	f = input("What history file would you like to restore? (0 = break loop): ")
