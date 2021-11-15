@@ -1,18 +1,25 @@
+# Import needed librarys
 from os import listdir
 from os.path import isfile, join
+import getpass
 
-onlyfiles = [f for f in listdir("/home/matias/.l-systems")]
+# Set username that we will later use to acces .l-systems
+username = getpass.getuser()
+# Onlyfiles is the variables in .l-system
+onlyfiles = [f for f in listdir("/home/" + str(username) + "/.l-systems")]
 print("available history files for restore:")
+# Print all available history files
 for f in onlyfiles:
 	print(f)
 f = input("What history file would you like to restore? (0 = break loop): ")
-file = open("/home/matias/.l-systems/" + f)
-while f != "0":
-	if f in onlyfiles:
-		history = open("history.txt", "r+")
-		history.truncate(0)
-		content = file.read()
-		history.write(content)
-		history.close
+while f != "0": # User can give "0" as input to stop program
+	if f in onlyfiles: # If the input is in the onlyfiles
+		history = open("history.txt", "r+") # Open history file
+		backup = open("/home/" + str(username) + "/.l-systems/" + f) # Open backup file
+		history.truncate(0) # Delete content of history.txt
+		content = backup.read() # Read content of backup file
+		history.write(content) # Write backup content in history.txt
+		history.close() # Close history file
+		backup.close() # Close backup file
 		break
-	f = input("What history file would you like to restore? (0= break loop): ")
+	f = input("What history file would you like to restore? (0 = break loop): ")
