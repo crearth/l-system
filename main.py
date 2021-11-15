@@ -118,7 +118,9 @@ def draw(string, trans, imageName):
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
+	# save the drawing to static/lastDrawing.eps
 	screen.getcanvas().postscript(file="static/lastDrawing.eps")
+	# convert the image from eps to jpg to display it on the web server
 	pic = Image.open("static/lastDrawing.eps")
 	pic.save("static/lastDrawing.jpg")
 
@@ -199,15 +201,15 @@ def checkFile(data):
 # Write system history to file
 def addHistory(axiom, rules, trans, iterations, lstring, variables, constants):
 	"""
-	Input: All variables that need to be stored in the history file
+	Input: axiom (string), rules (dictionary), trans (dictionary), iterations (integer), lstring (string), variables (list), constants (list)
 	----------
-	Output: Add a line with the variables to history.txt
+	Output: the line with history information that has to be written in history.txt
 	"""
-	f = open("history.txt","a")
-	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-	info = timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n"
-	f.write(info)	
-	return info
+	f = open("history.txt","a") # open the history.txt file (or make one if it doesn't exist) in the append mode 
+	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S") # get current timestamp in day/month/year hour:minute:second notation
+	info = timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n" # concatenate all the input to one line with tabs between two variables, also convert the variable to a string if needed to be able to concatenate
+	f.write(info) # write the history data to the file
+	return info # return the history information (used for pytest)
 
 # Make alphabet variable
 def makeAlph(variables, constants):
@@ -219,10 +221,15 @@ def makeAlph(variables, constants):
 	alph = variables + constants
 	return alph
 
-def getArguments(argv):
+def getArguments(arguments):
+	"""
+	Input: arguments (list)
+	---------
+	Output: outputfile (string): name of the file
+	"""
 	outputfile = '' # Initialize the variable outputfile
 	try:
-		opts, args = getopt.getopt(argv,"-e",["export="]) # Get the options and arguments
+		opts, args = getopt.getopt(arguments,"-e",["export="]) # Get the options and arguments
 	except getopt.GetoptError:
 		print("main.py --export <filename>") # If there is an error, print how to use the option
 	# Get the options and arguments and set it to the variable outputfile
@@ -263,10 +270,12 @@ def main():
 
 	print(lstring)
 
-	# Give the draw function the name of the file, if there is one
+	# Give the draw function the name of the file to export, if there is one
 	argument = getArguments(sys.argv[1:])
+	# if there is an argument, give the draw function the name of the file for the exported drawing
 	if argument != False:
 		draw(lstring, trans, argument)
+	# if there is no argument, give set the parameter for exporting the drawing to None
 	else:
 		draw(lstring, trans, None)
 
