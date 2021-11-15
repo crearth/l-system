@@ -273,7 +273,7 @@ def main():
 	# Apply the logic of an l-system
 	lstring = lSystem(axiom, rules, iter)
 	# Add the l-system to the history file
-	addHistory(axiom, rules, alph, trans, iter, lstring, variables, constants)
+	addHistory(axiom, rules, trans, iter, lstring, variables, constants)
 
 	# Print l-string to terminal
 	print(lstring)
