@@ -129,14 +129,14 @@ def draw(string, trans, imageName):
 	pic.save("static/lastDrawing.jpg") # Change the eps file to a jpg file
 	pic.close()
 
-# Check if the input file has correct input data
-def checkData(axiom, rules, alph, trans, pos_translations):
-	"""
-	Input: All the variables of an l-system and the translations of the string that our program supports
-		axiom = string, rules = dictionary, alph = list, trans = list, pos_translations = list (supported translations)
+# Check if axiom is correct data type
+def checkAxiom(axiom, alph):
+	'''
+	Input: axiom and alph
 	----------
-	Output: Return False if the data is not the correct data to preform an l-system
-	"""
+	Output: return True if axiom is string with all symbols in alph
+	else return False
+	'''
 	if axiom == '': # We need an axiom to start the program
 		return False
 
@@ -145,7 +145,16 @@ def checkData(axiom, rules, alph, trans, pos_translations):
 	for symbol in axiom: # Check if every symbol in axiom is in the alphabet
 		if not symbol in alph:
 			return False
+	return True
 
+# Check if the rules have the correct data type
+def checkRules(rules, alph):
+	'''
+	Input: rules and alph
+	----------
+	Output: return True if rules is dict with [string : list] and all symbols in alph
+	else return False
+	'''
 	if not isinstance(rules, dict): # Check if rules is a dictionary
 		return False
 	for rule in rules:
@@ -158,30 +167,62 @@ def checkData(axiom, rules, alph, trans, pos_translations):
 			return False
 		if not isinstance(rules[rule], str): # Check if the value of every rule is a string
 			return False
+	return True
 
+# Check if the alphabet is the correct data type
+def checkAlph(alph):
+	'''
+	Input: alph
+	----------
+	Output: return True if alph is a list from strings
+	else return False
+	'''
 	if not isinstance(alph, list): # Check if the alphabet is a list
 		return False
 	for symbol in alph: # Check if every symbol in the alphabet is a string
 		if not isinstance(symbol, str):
 			return False
+	return True
 
+# Check if the translations has the correct data type
+def checkTrans(trans, alph, pos_translations):
+	'''
+	Input: trans, alph, pos_translations
+	----------
+	Output: return True if trans is dict with [string : list] and all those strings are in pos_translations
+	else return False
+	'''
 	if not isinstance(trans, dict):
 		return False
 	for tran in trans: # Trans is a dictionary, tran is a key in trans
 		if not tran in alph:
 			return False
-		if not isinstance(trans[tran] , list): # Trans[tran] is the value of the key 
+		if not isinstance(trans[tran] , list): # Trans[tran] is the value of the key
 			return False
-		if not isinstance(trans[tran][0], str): # Trans[tran][1] is the second item in the value of the key, the value is a list
+		if not isinstance(trans[tran][0], str): # Trans[tran][1] is the second item in the value
 			return False
 		if trans[tran][0] == "color": # When the function is color, we need a string not a value
 			if not isinstance(trans[tran][1], str):
 				return False
-		else:
-			if not (isinstance(trans[tran][1], int) or isinstance(trans[tran][1], float)): # The parameter must be an int
-				return False
-		if not trans[tran][0] in pos_translations: # Check if the translation is supported by the program
+
+		elif not (isinstance(trans[tran][1], int) or isinstance(trans[tran][1], float)): # The parameter must be an int
 			return False
+		elif not trans[tran][0] in pos_translations: # Check if the tran>
+			return False
+
+	return True
+
+# Check if the input file has correct input data
+def checkData(axiom, rules, alph, trans, pos_translations):
+	"""
+	Input: All the variables of an l-system and the translations of the string that our program supports
+		axiom = string, rules = dictionary, alph = list, trans = list, pos_translations = list (supported translations)
+	----------
+	Output: Return False if the data is not the correct data to preform an l-system
+	"""
+	if checkAxiom(axiom, alph) and checkRules(rules, alph) and checkAlph(alph) and checkTrans(trans, alph, pos_translations):
+		return True
+	return False
 
 # Check if input file contains needed variables
 def checkFile(data):
