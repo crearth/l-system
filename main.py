@@ -95,27 +95,28 @@ def draw(string, trans, imageName):
 	for symbol in string: # Go over every symbol in the generated lstring
 		if symbol in trans: # Check if the el can get translated
 			para = trans[symbol][1] # Para is the parameter that will be put in the used fuction
-			if "draw" == trans[symbol][0]:
+			function = trans[symbol][0] # Function is the string of the function in the json file
+			if "draw" == function:
 				t.forward(para) # Draw line with length para
-			elif "angle" == trans[symbol][0]:
+			elif "angle" == function:
 				t.left(para) # Rotate to the left with "para" degrees
-			elif "forward" == trans[symbol][0]:
+			elif "forward" == function:
 				# Move forward without drawing a line
 				t.penup() # Raising pen
 				t.forward(para) # Moving
 				t.pendown() # Dropping pen, draw again
-			elif "nop" == trans[symbol][0]:
+			elif "nop" == function:
 				pass # Do nothing
-			elif "push" == trans[symbol][0]:
+			elif "push" == function:
 				stack.append((t.pos(), t.heading())) # Add the current position and heading to stack
-			elif "pop" == trans[symbol][0]:
+			elif "pop" == function:
 				t.penup() # Make sure no lines are drawn
 				t.setpos(stack[len(stack)-1][0]) # Set position and heading to last item in stack
 				t.setheading(stack[len(stack)-1][1]) # Set heading to last item in stack
 				t.pendown() # Make sure turtle draws again
 				stack.pop(len(stack)-1) # Remove last item from stack
-			elif "color" == trans[symbol][0]:
-				setColor(trans[symbol][1], t)
+			elif "color" == function:
+				setColor(para, t)
 
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
