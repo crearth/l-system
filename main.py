@@ -86,6 +86,8 @@ def draw(string, trans, imageName):
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle() # Hide the turtle on the screen
 	t.setheading(90) # Set starting position of turtle heading up
+	screen.tracer(0,0) # Doesn't show the turtle until screen.update()
+	# This makes the drawing faster
 	t.speed(0) # Set the speed of the turtle to max
 
 	stack = [] # Stack will be used to push and pop between positions
@@ -115,6 +117,7 @@ def draw(string, trans, imageName):
 			elif "color" == trans[symbol][0]:
 				setColor(trans[symbol][1], t)
 
+	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
