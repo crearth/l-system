@@ -21,7 +21,7 @@ def getData(f):
 	"""
 	Input: File
 	----------
-	Output: Return a dictionary of the content of the given file 
+	Output: Return a dictionary of the content of the given file
 	"""
 	data = json.load(f)
 	f.close() # Close file after getting information in data
@@ -72,36 +72,43 @@ def setColor(color, t):
 	t.pencolor(color)
 	return t
 
-# Draw the given string by using the translations
-def draw(string, trans, imageName):
-	"""
-	Input: String (the end result of an l-system), translations (trans) = dictionary (the trans of the used l-system
+# Init turtle, screen
+def drawInit(): # Subfunction from draw
+	'''
+	Input: None
 	----------
-	Output: No return, will draw the given string by the given translations
-	"""
-
-	# Setup screen
-	screen = tur.Screen()
+	Output: Return screen and turtle
+	'''
+	screen = tur.Screen() # Set up screen
 
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle() # Hide the turtle on the screen
 	t.setheading(90) # Set starting position of turtle heading up
-	screen.tracer(0,0) # Doesn't show the turtle until screen.update()
+	screen.tracer(0,0) # Doesn't show the turte until screen.update()
 	# This makes the drawing faster
-	t.speed(0) # Set the speed of the turtle to max
+	return screen, t
+
+# Draw the string
+def drawDraw(string, trans, screen, t):
+	'''
+	Input: String , trans is the translations (dictionary), screen is a turtle screen
+	t is the turtle itself
+	----------
+	Ouput: Return screen and turtle
+	'''
 
 	stack = [] # Stack will be used to push and pop between positions
 
 	for symbol in string: # Go over every symbol in the generated lstring
 		if symbol in trans: # Check if the el can get translated
-			para = trans[symbol][1] # Para is the parameter that will be put in the used fuction
+			para = trans[symbol][1] # Para is the parameter that will be put in the used function
 			function = trans[symbol][0] # Function is the string of the function in the json file
-			if "draw" == function:
+			if 'draw' == function:
 				t.forward(para) # Draw line with length para
 			elif "angle" == function:
 				t.left(para) # Rotate to the left with "para" degrees
 			elif "forward" == function:
-				# Move forward without drawing a line
+				# Move froward without drawing a line
 				t.penup() # Raising pen
 				t.forward(para) # Moving
 				t.pendown() # Dropping pen, draw again
@@ -111,23 +118,45 @@ def draw(string, trans, imageName):
 				stack.append((t.pos(), t.heading())) # Add the current position and heading to stack
 			elif "pop" == function:
 				t.penup() # Make sure no lines are drawn
-				t.setpos(stack[len(stack)-1][0]) # Set position and heading to last item in stack
-				t.setheading(stack[len(stack)-1][1]) # Set heading to last item in stack
+				t.setpos(stack[-1][0]) # Set position and heading to last item in stack
+				t.setheading(stack[-1][1]) # Set heading to last item in stack
 				t.pendown() # Make sure turtle draws again
-				stack.pop(len(stack)-1) # Remove last item from stack
+				stack.pop(-1)
 			elif "color" == function:
 				setColor(para, t)
 
+	return screen, t
+
+# Save the drawing
+def drawSave(imageName, screen): # Subfunction of draw
+	'''
+	Input: ImageName if there is one, screen and turtle
+	----------
+	Output: Save the drawing, no return
+	'''
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
-		screen.getcanvas().postscript(file=imageName)
+		screen.getcanvas().postscript(file="static/lastDrawing.eps")
 	# Save the drawing to static/lastDrawing.eps
 	screen.getcanvas().postscript(file="static/lastDrawing.eps")
 	# Convert the image from eps to jpg to display it on the web server
 	pic = Image.open("static/lastDrawing.eps")
 	pic.save("static/lastDrawing.jpg") # Change the eps file to a jpg file
 	pic.close()
+
+# Draw the given string by using the translations
+def draw(string, trans, imageName):
+	"""
+	Input: String (the end result of an l-system), translations (trans) = dictionary (the trans of the used l-system
+	----------
+	Output: No return, will draw the given string by the given translations
+	and save the drawing in static under the name lastDrawing.(eps/jpg)
+	"""
+
+	screen, t = drawInit() # Set up screen and turtle (t)
+	screen, t = drawDraw(string, trans, screen, t) # Make the drawing
+	drawSave(imageName, screen) # Save the drawing and export function
 
 # Check if axiom is correct data type
 def checkAxiom(axiom, alph):
