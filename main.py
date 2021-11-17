@@ -84,7 +84,7 @@ def drawInit(): # Subfunction from draw
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle() # Hide the turtle on the screen
 	t.setheading(90) # Set starting position of turtle heading up
-	screen.tracer(0,0) # Doesn't show the turte until screen.update()
+	screen.tracer(0,0) # Doesn't show the turtle until screen.update()
 	# This makes the drawing faster
 	return screen, t
 
@@ -103,12 +103,12 @@ def drawDraw(string, trans, screen, t):
 		if symbol in trans: # Check if the el can get translated
 			para = trans[symbol][1] # Para is the parameter that will be put in the used function
 			function = trans[symbol][0] # Function is the string of the function in the json file
-			if 'draw' == function:
+			if "draw" == function:
 				t.forward(para) # Draw line with length para
 			elif "angle" == function:
 				t.left(para) # Rotate to the left with "para" degrees
 			elif "forward" == function:
-				# Move froward without drawing a line
+				# Move forward without drawing a line
 				t.penup() # Raising pen
 				t.forward(para) # Moving
 				t.pendown() # Dropping pen, draw again
@@ -121,7 +121,7 @@ def drawDraw(string, trans, screen, t):
 				t.setpos(stack[-1][0]) # Set position and heading to last item in stack
 				t.setheading(stack[-1][1]) # Set heading to last item in stack
 				t.pendown() # Make sure turtle draws again
-				stack.pop(-1)
+				stack.pop(-1) # Remove last item from stack
 			elif "color" == function:
 				setColor(para, t)
 
@@ -137,7 +137,8 @@ def drawSave(imageName, screen): # Subfunction of draw
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
-		screen.getcanvas().postscript(file="static/lastDrawing.eps")
+		screen.getcanvas().postscript(file=imageName)
+
 	# Save the drawing to static/lastDrawing.eps
 	screen.getcanvas().postscript(file="static/lastDrawing.eps")
 	# Convert the image from eps to jpg to display it on the web server
