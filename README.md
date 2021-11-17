@@ -3,6 +3,11 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] docker
+- [ ] comments toevoegen yaml action
+- [ ] comments verbeteren getArguments
+- [ ] split draw in functions 
+- [ ] opmaak website
+- [ ] readme uitbreiden
 
 ## DONE
 - [x] l-system itself
