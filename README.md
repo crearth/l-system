@@ -5,11 +5,11 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [ ] docker
 - [ ] comments toevoegen yaml action
 - [ ] comments verbeteren getArguments
-- [ ] split draw in functions 
 - [ ] opmaak website
 - [ ] readme uitbreiden
 
 ## DONE
+- [x] split draw in functions
 - [x] l-system itself
 - [x] system history
 - [x] checking incorrect input
