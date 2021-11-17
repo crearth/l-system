@@ -284,7 +284,7 @@ def getArguments(arguments):
 		if opt in ("-e", "--export"):
 			outputfile = arg
 		else:
-			 outputfile = False
+			outputfile = False
 	return outputfile
 
 # Main function
