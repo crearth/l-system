@@ -22,7 +22,7 @@ lstring = split[7]
 @app.route("/index")
 def home():
 	# Use index.html as html code for the website and pass in needed variables as arguments
-	return render_template("index.html", timestamp=time, variables=variables, constants=constants, axiom=axiom, rules=rules, traslations=trans, iterations=iterations, endstring=lstring)
+	return render_template("index.html", timestamp=time, variables=variables, constants=constants, axiom=axiom, rules=rules, translations=trans, iterations=iterations, endstring=lstring)
 
 if __name__ == "__main__":
 	app.run()
