@@ -9,7 +9,6 @@ venv.bak/
 history.txt
 
 # eps files (exports)
-test.eps
 *.eps
 
 # jpg files
