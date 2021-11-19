@@ -1,28 +1,31 @@
-# .github/workflows/app.yaml
-name: PyTest
+name: Unit Tests with PyTest 
+# run the Github Action when a commit is pushed
 on: push
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
 
     steps:
+	# Read/access the repository code
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      # Setup Python (faster than using Python container)
+      # Setup Python
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.x"
 
+	# Install python virtual environment
       - name: Install venv
         run: |
           python -m venv l-venv
+	# Install dependencies in requirements.txt
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+	# Run PyTest
       - name: Run pytest 
         run: |
           pytest 
