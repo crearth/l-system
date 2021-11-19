@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-	# Read/access the repository code
+      # Read/access the repository code
       - name: Check out repository code
         uses: actions/checkout@v2
 
@@ -17,15 +17,15 @@ jobs:
         with:
           python-version: "3.x"
 
-	# Install python virtual environment
+      # Install python virtual environment
       - name: Install venv
         run: |
           python -m venv l-venv
-	# Install dependencies in requirements.txt
+      # Install dependencies in requirements.txt
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-	# Run PyTest
+      # Run PyTest
       - name: Run pytest 
         run: |
           pytest 
