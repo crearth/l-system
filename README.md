@@ -3,13 +3,10 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] docker
-- [ ] comments toevoegen yaml action
 - [ ] comments verbeteren getArguments
 - [ ] readme uitbreiden
 
 ## DONE
-- [x] opmaak website (header toegevoegd)
-- [x] split draw in functions
 - [x] l-system itself
 - [x] system history
 - [x] checking incorrect input
@@ -21,6 +18,9 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] history file backups
 - [x] restoring database from a backup
 - [x] unit testing: add 1 history check
+- [x] split draw in functions
+- [x] opmaak website (header toegevoegd)
+- [x] comments toevoegen yaml action
 
 ## Installation
 Clone this repository to your local computer.
