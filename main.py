@@ -301,7 +301,7 @@ def getArguments():
 	"""
 	Input: arguments (list)
 	---------
-	Output: outputfile (string): name of the file
+	Output: return the name of the outputfile if there is an argument "export", otherwise return None
 	"""
 	try:
 		opts, args = getopt.getopt(sys.argv[1:], '',["export="]) # Get the options and arguments, we need one long argument 'export'
@@ -351,8 +351,8 @@ def main():
 	print(lstring)
 
 	# Give the draw function the name of the file to export, if there is one
-	outputfile = getArguments()
-	draw(lstring, trans, outputfile)
+	imageName = getArguments()
+	draw(lstring, trans, imageName)
 
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
 
