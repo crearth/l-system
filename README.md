@@ -3,7 +3,6 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] docker
-- [ ] comments verbeteren getArguments
 - [ ] readme uitbreiden
 
 ## DONE
@@ -21,6 +20,7 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] split draw in functions
 - [x] opmaak website (header toegevoegd)
 - [x] comments toevoegen yaml action
+- [x] comments verbeteren getArguments
 
 ## Installation
 Clone this repository to your local computer.
