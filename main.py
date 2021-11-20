@@ -297,25 +297,22 @@ def makeAlph(variables, constants):
 	alph = variables + constants # The alphabet is the combination of variables and constants
 	return alph
 
-def getArguments(arguments):
+def getArguments():
 	"""
 	Input: arguments (list)
 	---------
 	Output: outputfile (string): name of the file
 	"""
-	outputfile = '' # Initialize the variable outputfile
 	try:
-		opts, args = getopt.getopt(arguments,"-e",["export="]) # Get the options and arguments
+		opts, args = getopt.getopt(sys.argv[1:], '',["export="]) # Get the options and arguments, we need one long argument 'export'
 	except getopt.GetoptError:
 		print("main.py --export <filename>") # If there is an error, print how to use the option
-	# Get the options and arguments and set it to the variable outputfile
-	# If there is no option, set outputfile to False
+	# Get the options and arguments and return the argument of the export option
+	# If there is no option, return  None
 	for opt, arg in opts:
-		if opt in ("-e", "--export"):
-			outputfile = arg
-		else:
-			outputfile = False
-	return outputfile
+		if opt == "--export":
+			return arg 
+	return None 
 
 # Main function
 def main():
@@ -354,16 +351,11 @@ def main():
 	print(lstring)
 
 	# Give the draw function the name of the file to export, if there is one
-	argument = getArguments(sys.argv[1:])
-	# If there is an argument, give the draw function the name of the file for the exported drawing
-	if argument != False:
-		draw(lstring, trans, argument)
-	# If there is no argument, give set the parameter for exporting the drawing to None
-	else:
-		draw(lstring, trans, None)
+	outputfile = getArguments()
+	draw(lstring, trans, outputfile)
 
 	tur.Screen().exitonclick() # Keep the drawing open unless you click on exit button
 
 if __name__ == "__main__":
-   # Stuff only to run when not called via 'import' here
+   # Function only to run when not called via 'import' 
    main()
