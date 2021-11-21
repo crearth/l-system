@@ -3,6 +3,7 @@ import json
 import turtle as tur
 from datetime import datetime
 import sys, getopt
+import os
 from PIL import Image
 
 # Getting input on what json file to use
@@ -313,6 +314,12 @@ def getArguments():
 		if opt == "--export":
 			return arg 
 	return None 
+
+# Display environment function for Docker
+# https://github.com/scrtlabs/catalyst/issues/39#issuecomment-570282239
+def dispEnv():
+	if os.environ.get('DISPLAY', '') == '':
+		os.environ.__setitem__('DISPLAY', ':0.0')
 
 # Main function
 def main():
