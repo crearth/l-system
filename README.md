@@ -84,3 +84,18 @@ You can view the information and a picture of your latest drawing with the follo
 python3 webPage.py
 ```
 Access the webpage with this url: `http://localhost:5000/index`.
+
+### Docker
+You can build a docker image and run a docker container with the following commands:
+```bash
+cd /path/to/project
+
+docker build -t l-system:0.1
+
+docker run -it l-system:0.1
+```
+Now you can run the main.py file.
+
+Things that don't work yet:
+* tkinter - no display host
+* web server
