@@ -315,12 +315,6 @@ def getArguments():
 			return arg 
 	return None 
 
-# Display environment function for Docker
-# https://github.com/scrtlabs/catalyst/issues/39#issuecomment-570282239
-def dispEnv():
-	if os.environ.get('DISPLAY', '') == '':
-		os.environ.__setitem__('DISPLAY', ':0.0')
-
 # Main function
 def main():
 
