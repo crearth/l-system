@@ -1,4 +1,3 @@
-
 # python virtual environments
 .venv
 venv/
@@ -10,7 +9,6 @@ venv.bak/
 history.txt
 
 # eps files (exports)
-test.eps
 *.eps
 
 # jpg files
@@ -19,9 +17,6 @@ test.eps
 # jpg files in /static
 static/*
 !static/.gitkeep
-
-# backup files in /l-systems
-l-systems/*
 
 # vim swap files
 *.swp

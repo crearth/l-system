@@ -2,11 +2,10 @@
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
-- [ ] unit testing: add history check
 - [ ] docker
+- [ ] readme uitbreiden
 
 ## DONE
-- [x] restoring database from a backup
 - [x] l-system itself
 - [x] system history
 - [x] checking incorrect input
@@ -16,6 +15,12 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] web server: l-system drawings on web server
 - [x] configure a CI pipeline
 - [x] history file backups
+- [x] restoring database from a backup
+- [x] unit testing: add 1 history check
+- [x] split draw in functions
+- [x] opmaak website (header toegevoegd)
+- [x] comments toevoegen yaml action
+- [x] comments verbeteren getArguments
 
 ## Installation
 Clone this repository to your local computer.
@@ -62,7 +67,7 @@ A history.txt file will be created when running the main.py for the first time. 
 ### History backups
 If you wish, you can make backups on a hourly rate with the bash script `backup.sh`. Add the following to your crontab (command crontab -e):
 ```bash
-*0 * * * * cd /path/to/the/project/ && ./backup.sh >/dev/null 2>&1
+0 * * * * cd /path/to/the/project/ && ./backup.sh >/dev/null 2>&1
 ``` 
 
 ### Exporting the drawing
@@ -79,3 +84,18 @@ You can view the information and a picture of your latest drawing with the follo
 python3 webPage.py
 ```
 Access the webpage with this url: `http://localhost:5000/index`.
+
+### Docker
+You can build a docker image and run a docker container with the following commands:
+```bash
+cd /path/to/project
+
+docker build -t l-system:0.1
+
+docker run -it l-system:0.1
+```
+Now you can run the main.py file.
+
+Things that don't work yet:
+* tkinter - no display host
+* web server
