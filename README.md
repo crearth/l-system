@@ -2,11 +2,11 @@
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
-- [ ] docker
-- [ ] svg picture
-- [ ] canvas scaling
-- [ ] pytest history for multiple l-strings
-- [ ] readme uitbreiden
+- [ ] docker (Arthur)
+- [ ] svg picture (Matias)
+- [ ] canvas scaling (Matias)
+- [ ] pytest history for multiple l-strings (Arthur)
+- [ ] readme uitbreiden (Arthur)
 
 ## DONE
 - [x] l-system itself
