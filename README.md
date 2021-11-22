@@ -3,6 +3,9 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] docker
+- [ ] svg picture
+- [ ] canvas scaling
+- [ ] pytest history for multiple l-strings
 - [ ] readme uitbreiden
 
 ## DONE
@@ -18,9 +21,9 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] restoring database from a backup
 - [x] unit testing: add 1 history check
 - [x] split draw in functions
-- [x] opmaak website (header toegevoegd)
-- [x] comments toevoegen yaml action
-- [x] comments verbeteren getArguments
+- [x] layout website (header added)
+- [x] comments added yaml action
+- [x] comments made better getArguments
 
 ## Installation
 Clone this repository to your local computer.
