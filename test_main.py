@@ -2,6 +2,9 @@ from main import getData, getVariables, lSystem, addHistory
 from datetime import datetime
 import pytest
 
+def openFile():
+	
+
 # Test the lSystem function with the test1.json
 def test_1_lSystem():
 	iterations = 4 
@@ -47,3 +50,6 @@ def test_3_hisotry():
 	history = addHistory(axiom, rules, trans, iterations, lstring, variables, constants)
 	correctHistory = timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n" 
 	assert history == correctHistory
+
+def test_history():
+	
