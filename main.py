@@ -139,13 +139,6 @@ def drawSave(imageName, screen): # Subfunction of draw
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
 
-	# Save the drawing to static/lastDrawing.eps
-	screen.getcanvas().postscript(file="static/lastDrawing.eps")
-	# Convert the image from eps to jpg to display it on the web server
-	pic = Image.open("static/lastDrawing.eps")
-	pic.save("static/lastDrawing.jpg") # Change the eps file to a jpg file
-	pic.close()
-
 # Draw the given string by using the translations
 def draw(string, trans, imageName):
 	"""
