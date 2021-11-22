@@ -3,7 +3,6 @@ import json
 import turtle as tur
 from datetime import datetime
 import sys, getopt
-from PIL import Image
 
 # Getting input on what json file to use
 def getFile():
