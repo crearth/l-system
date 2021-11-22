@@ -2,7 +2,9 @@ from main import getData, getVariables, lSystem, addHistory
 from datetime import datetime
 import pytest
 
-def openFile():
+def openFile(file):
+	f = open(file,"r")
+	return f
 	
 
 # Test the lSystem function with the test1.json
