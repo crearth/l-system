@@ -17,15 +17,12 @@ rules = split[4]
 trans = split[5]
 iterations = split[6]
 lstring = split[7]
-svgF = open("./static/lstring.svg", "r")
-svg = svgF.read()
 
 # Define /index page
 @app.route("/index")
 def home():
 	# Use index.html as html code for the website and pass in needed variables as arguments
-	return render_template("index.html", timestamp=time, variables=variables, constants=constants, axiom=axiom, rules=rules, translations=trans, iterations=iterations, endstring=lstring, svg=svg)
+	return render_template("index.html", timestamp=time, variables=variables, constants=constants, axiom=axiom, rules=rules, translations=trans, iterations=iterations, endstring=lstring)
 
 if __name__ == "__main__":
 	app.run()
-

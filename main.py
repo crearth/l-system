@@ -98,7 +98,6 @@ def drawDraw(string, trans, screen, t):
 
 	stack = [] # Stack will be used to push and pop between positions
 
-	svg = open("./static/lstring.svg", "w")
 	svgCoordinates = []
 
 	width, height = 0,0
@@ -135,26 +134,40 @@ def drawDraw(string, trans, screen, t):
 			width = abs(max(width, abs(t.pos()[0])))
 			height = abs(max(height, abs(t.pos()[1])))
 
-	svgText = []
 	width *= 2.2
 	height *= 2.2
 
-	xAdd = width/2
-	yAdd = height/2
+	makeText(svgCoordinates, width, height)
 
-	for coord in svgCoordinates:
+	return screen, t
+
+
+# Make the text for the svg file
+def makeText(coordinates, width, height):
+	'''
+	Input: a list of coordinates like [(x1,y1,x2,y2), ...]
+	----------
+	Output: no return, will write the svg file that we later use in webPage.py
+	'''
+
+	svg = open("./static/.lstring.svg", "w")
+
+	xAdd = width/2
+	yAdd= height/2
+
+	svgText = []
+	for coord in coordinates:
 		x1 = coord[0]
 		x2 = coord[2]
 		y1 = coord[1]
 		y2 = coord[3]
-		svgText.append('<line x1="' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
+		svgText.append('<line x1"' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
 
 	svgText.insert(0, '<svg width="' + str(width) + '" height="' + str(height) + '">\n')
-	svgText.append('</svg>')
+	svgText.append('/svg>')
 	svg.writelines(svgText)
 
-	svg.close()
-	return screen, t
+	svg.close
 
 # Save the drawing
 def drawSave(imageName, screen): # Subfunction of draw
