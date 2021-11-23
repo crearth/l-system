@@ -139,7 +139,7 @@ def drawDraw(string, trans, screen, t):
 
 	makeText(svgCoordinates, width, height)
 
-	return screen, t
+	return screen, t, width, height
 
 
 # Make the text for the svg file
@@ -170,12 +170,13 @@ def makeText(coordinates, width, height):
 	svg.close
 
 # Save the drawing
-def drawSave(imageName, screen): # Subfunction of draw
+def drawSave(imageName, screen, width, height): # Subfunction of draw
 	'''
 	Input: ImageName if there is one, screen and turtle
 	----------
 	Output: Save the drawing, no return
 	'''
+	screen.screensize(width, height)
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
@@ -191,8 +192,8 @@ def draw(string, trans, imageName):
 	"""
 
 	screen, t = drawInit() # Set up screen and turtle (t)
-	screen, t = drawDraw(string, trans, screen, t) # Make the drawing
-	drawSave(imageName, screen) # Save the drawing and export function
+	screen, t, width, height = drawDraw(string, trans, screen, t) # Make the drawing
+	drawSave(imageName, screen, width, height) # Save the drawing and export function
 
 # Check if axiom is correct data type
 def checkAxiom(axiom, alph):
