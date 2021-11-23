@@ -167,7 +167,7 @@ def makeText(coordinates, width, height):
 	svgText.append('/svg>')
 	svg.writelines(svgText)
 
-	svg.close
+	svg.close()
 
 # Save the drawing
 def drawSave(imageName, screen, width, height): # Subfunction of draw
