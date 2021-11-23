@@ -82,9 +82,10 @@ python3 main.py --export <filename>
 Replace `<filename>` with the name of the file you want, followed by the extension .eps.
 
 ### Web server
-You can view the information and a picture of your latest drawing with the following command:
+You can view the information and a picture of your latest drawing with the following commands:
 ```bash
-python3 webPage.py
+export FLASK_APP=webPage
+flask run
 ```
 Access the webpage with this url: `http://localhost:5000/index`.
 
