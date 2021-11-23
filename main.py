@@ -161,7 +161,7 @@ def makeText(coordinates, width, height):
 		x2 = coord[2]
 		y1 = coord[1]
 		y2 = coord[3]
-		svgText.append('<line x1"' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
+		svgText.append('<line x1="' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
 
 	svgText.insert(0, '<svg width="' + str(width) + '" height="' + str(height) + '">\n')
 	svgText.append('/svg>')
