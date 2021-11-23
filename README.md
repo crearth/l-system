@@ -2,8 +2,11 @@
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
-- [ ] docker
-- [ ] readme uitbreiden
+- [ ] docker (Arthur)
+- [ ] svg picture (Matias)
+- [ ] canvas scaling (Matias)
+- [ ] pytest history for multiple l-strings (Arthur)
+- [ ] readme uitbreiden (Arthur)
 
 ## DONE
 - [x] l-system itself
@@ -18,9 +21,9 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] restoring database from a backup
 - [x] unit testing: add 1 history check
 - [x] split draw in functions
-- [x] opmaak website (header toegevoegd)
-- [x] comments toevoegen yaml action
-- [x] comments verbeteren getArguments
+- [x] layout website (header added)
+- [x] comments added yaml action
+- [x] comments made better getArguments
 
 ## Installation
 Clone this repository to your local computer.
@@ -79,9 +82,10 @@ python3 main.py --export <filename>
 Replace `<filename>` with the name of the file you want, followed by the extension .eps.
 
 ### Web server
-You can view the information and a picture of your latest drawing with the following command:
+You can view the information and a picture of your latest drawing with the following commands:
 ```bash
-python3 webPage.py
+export FLASK_APP=webPage
+flask run
 ```
 Access the webpage with this url: `http://localhost:5000/index`.
 

@@ -3,8 +3,6 @@ import json
 import turtle as tur
 from datetime import datetime
 import sys, getopt
-import os
-from PIL import Image
 
 # Getting input on what json file to use
 def getFile():
@@ -100,12 +98,20 @@ def drawDraw(string, trans, screen, t):
 
 	stack = [] # Stack will be used to push and pop between positions
 
+	svg = open("./static/lstring.svg", "w")
+	svgCoordinates = []
+
+	width, height = 0,0
+
 	for symbol in string: # Go over every symbol in the generated lstring
 		if symbol in trans: # Check if the el can get translated
 			para = trans[symbol][1] # Para is the parameter that will be put in the used function
 			function = trans[symbol][0] # Function is the string of the function in the json file
 			if "draw" == function:
+				x1, y1 = t.pos()
 				t.forward(para) # Draw line with length para
+				x2, y2 = t.pos()
+				svgCoordinates.append((x1, y1, x2, y2))
 			elif "angle" == function:
 				t.left(para) # Rotate to the left with "para" degrees
 			elif "forward" == function:
@@ -126,6 +132,28 @@ def drawDraw(string, trans, screen, t):
 			elif "color" == function:
 				setColor(para, t)
 
+			width = abs(max(width, abs(t.pos()[0])))
+			height = abs(max(height, abs(t.pos()[1])))
+
+	svgText = []
+	width *= 2.2
+	height *= 2.2
+
+	xAdd = width/2
+	yAdd = height/2
+
+	for coord in svgCoordinates:
+		x1 = coord[0]
+		x2 = coord[2]
+		y1 = coord[1]
+		y2 = coord[3]
+		svgText.append('<line x1="' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
+
+	svgText.insert(0, '<svg width="' + str(width) + '" height="' + str(height) + '">\n')
+	svgText.append('</svg>')
+	svg.writelines(svgText)
+
+	svg.close()
 	return screen, t
 
 # Save the drawing
@@ -139,13 +167,6 @@ def drawSave(imageName, screen): # Subfunction of draw
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
 		screen.getcanvas().postscript(file=imageName)
-
-	# Save the drawing to static/lastDrawing.eps
-	screen.getcanvas().postscript(file="static/lastDrawing.eps")
-	# Convert the image from eps to jpg to display it on the web server
-	pic = Image.open("static/lastDrawing.eps")
-	pic.save("static/lastDrawing.jpg") # Change the eps file to a jpg file
-	pic.close()
 
 # Draw the given string by using the translations
 def draw(string, trans, imageName):
