@@ -92,10 +92,20 @@ Access the webpage with this url: `http://localhost:5000/index`.
 ### Docker
 You can build a docker image and run a docker container with the project files.
 Important: in order for docker to show you the drawing, you should first run the following commands:
+LINUX
 ```bash
 sudo apt-get install x11-xserver-utils
 
 xhost +
+```
+MACOS (thanks to [this gist](https://gist.github.com/cschiewek/246a244ba23da8b9f0e7b11a68bf3285)
+1. install [XQuartz](https://xquartz.org)
+2. launch XQuartz, under the XQuartz menu, select Preferences
+3. go to security tab and ensure "allow connections from network clients" is checked
+4. run the following commands
+```bash
+xhost + ${hostname}
+export HOSTNAME='your_hostname.local'
 ```
 Then you can start with docker:
 ```bash
@@ -107,6 +117,7 @@ docker run --rm -ti -v /tmp/.X11-unix:/tmp/.X11-unix \
                     -e DISPLAY=$DISPLAY \
 		    l-system:0.1
 ```
+On macOS you should change $DISPLAY to ${HOSTNAME}:0
 Now you can run the main.py file.
 
 Things that don't work yet:
