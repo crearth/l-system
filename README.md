@@ -2,11 +2,10 @@
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
-- [ ] docker: webPage/flask (Arthur)
 - [ ] readme uitbreiden 
+- [ ] pytest history for multiple l-strings
 
 ## DONE
-- [x] pytest history for multiple l-strings
 - [x] svg picture on webserver
 - [x] canvas scaling
 - [x] l-system itself
@@ -24,6 +23,7 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] layout website (header added)
 - [x] comments added yaml action
 - [x] comments made better getArguments
+- [x] docker: webPage/flask (Arthur)
 
 ## Installation
 Clone this repository to your local computer.
