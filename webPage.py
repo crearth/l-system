@@ -29,4 +29,4 @@ def home():
 	return render_template("index.html", timestamp=time, variables=variables, constants=constants, axiom=axiom, rules=rules, translations=trans, iterations=iterations, endstring=lstring, svgText=svgText)
 
 if __name__ == "__main__":
-	app.run()
+	app.run(host="0.0.0.0")

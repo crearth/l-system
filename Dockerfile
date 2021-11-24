@@ -20,7 +20,7 @@ RUN pip3 install -r requirements.txt
 
 COPY . /l-system
 
-ENV FLASK_APP=webPage
+ENV FLASK_APP webPage
 
 #CMD [ "python3", "main.py" ]
-#CMD ["bash"]
+CMD ["bash"]

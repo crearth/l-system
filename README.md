@@ -90,19 +90,24 @@ flask run
 Access the webpage with this url: `http://localhost:5000/index`.
 
 ### Docker
-You can build a docker image and run a docker container with the following commands:
+You can build a docker image and run a docker container with the project files.
+Important: in order for docker to show you the drawing, you should first run the following commands:
+```bash
+sudo apt-get install x11-xserver-utils
+
+xhost +
+```
+Then you can start with docker:
 ```bash
 cd /path/to/project
 
 docker build -t l-system:0.1
 
 docker run --rm -ti -v /tmp/.X11-unix:/tmp/.X11-unix \
-                    -v /your/python/files/path:/app \
                     -e DISPLAY=$DISPLAY \
 		    l-system:0.1
 ```
 Now you can run the main.py file.
 
 Things that don't work yet:
-* tkinter - no display host
 * web server
