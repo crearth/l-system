@@ -3,7 +3,6 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] docker (Arthur)
-- [ ] show svg with information of history file (matias)
 - [ ] pytest history for multiple l-strings (Arthur)
 - [ ] readme uitbreiden (Arthur)
 
