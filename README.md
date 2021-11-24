@@ -98,7 +98,7 @@ sudo apt-get install x11-xserver-utils
 
 xhost +
 ```
-MACOS (thanks to [this gist](https://gist.github.com/cschiewek/246a244ba23da8b9f0e7b11a68bf3285)
+MACOS (thanks to [this gist](https://gist.github.com/cschiewek/246a244ba23da8b9f0e7b11a68bf3285))
 1. install [XQuartz](https://xquartz.org)
 2. launch XQuartz, under the XQuartz menu, select Preferences
 3. go to security tab and ensure "allow connections from network clients" is checked
