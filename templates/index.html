@@ -37,6 +37,8 @@ table, tr, th{
                 <th> {{endstring}} </th>
         </tr>
 </table>
-{{svg}}
+{% autoescape false %}
+	{{svgText}}
+{% endautoescape %}
 </body>
 </html>

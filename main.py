@@ -98,20 +98,19 @@ def drawDraw(string, trans, screen, t):
 
 	stack = [] # Stack will be used to push and pop between positions
 
-	svg = open("./static/lstring.svg", "w")
-	svgCoordinates = []
+	svgCoordinates = [] # Initialize the list
 
-	width, height = 0,0
+	width, height = 0,0 # Start width and height width 0,0
 
 	for symbol in string: # Go over every symbol in the generated lstring
 		if symbol in trans: # Check if the el can get translated
 			para = trans[symbol][1] # Para is the parameter that will be put in the used function
 			function = trans[symbol][0] # Function is the string of the function in the json file
 			if "draw" == function:
-				x1, y1 = t.pos()
+				x1, y1 = t.pos() # The starting point of the line
 				t.forward(para) # Draw line with length para
-				x2, y2 = t.pos()
-				svgCoordinates.append((x1, y1, x2, y2))
+				x2, y2 = t.pos() # The end point of the line
+				svgCoordinates.append((x1, y1, x2, y2)) # Add the beginning and end coordinates to the list of coordinates
 			elif "angle" == function:
 				t.left(para) # Rotate to the left with "para" degrees
 			elif "forward" == function:
@@ -132,37 +131,62 @@ def drawDraw(string, trans, screen, t):
 			elif "color" == function:
 				setColor(para, t)
 
+			# Set the width and height to the max values of x and y
 			width = abs(max(width, abs(t.pos()[0])))
 			height = abs(max(height, abs(t.pos()[1])))
 
-	svgText = []
+	# Multiply width 2.2 so we have a border around the drawing
 	width *= 2.2
 	height *= 2.2
 
-	xAdd = width/2
-	yAdd = height/2
+	# Write the svg file width the coordinates of all the lines in the drawing
+	makeText(svgCoordinates, width, height)
 
-	for coord in svgCoordinates:
+	return screen, t, width, height
+
+
+# Make the text for the svg file
+def makeText(coordinates, width, height):
+	'''
+	Input: a list of coordinates like [(x1,y1,x2,y2), ...]
+	----------
+	Output: no return, will write the svg file that we later use in webPage.py
+	'''
+
+	svg = open("./static/.lstring.svg", "w") # Open file
+
+	# xAdd and yAdd are needed because svg has (0,0) in the top left corner and turtle in the middle of the screen
+	# We will add xAdd to every x and yAdd to every y, this will make the drawing start in the middle of the screen
+	xAdd = width/2
+	yAdd= height/2
+
+	svgText = [] # Initialize the list
+	for coord in coordinates:
+		# Get coordinates from list
 		x1 = coord[0]
 		x2 = coord[2]
 		y1 = coord[1]
 		y2 = coord[3]
+		# Add text with the coordinates
+		# The text that we add is svg code for a line and it uses the beginning and end coordinates
 		svgText.append('<line x1="' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
 
+	# Insert the start svg tag
 	svgText.insert(0, '<svg width="' + str(width) + '" height="' + str(height) + '">\n')
+	# Add the end svg tag
 	svgText.append('</svg>')
-	svg.writelines(svgText)
+	svg.writelines(svgText) # Write the lines in the file
 
-	svg.close()
-	return screen, t
+	svg.close() # Close file
 
 # Save the drawing
-def drawSave(imageName, screen): # Subfunction of draw
+def drawSave(imageName, screen, width, height): # Subfunction of draw
 	'''
 	Input: ImageName if there is one, screen and turtle
 	----------
 	Output: Save the drawing, no return
 	'''
+	screen.screensize(width, height)
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
@@ -178,8 +202,8 @@ def draw(string, trans, imageName):
 	"""
 
 	screen, t = drawInit() # Set up screen and turtle (t)
-	screen, t = drawDraw(string, trans, screen, t) # Make the drawing
-	drawSave(imageName, screen) # Save the drawing and export function
+	screen, t, width, height = drawDraw(string, trans, screen, t) # Make the drawing
+	drawSave(imageName, screen, width, height) # Save the drawing and export function
 
 # Check if axiom is correct data type
 def checkAxiom(axiom, alph):
