@@ -2,8 +2,8 @@
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
-- [ ] docker (Arthur)
-- [ ] readme uitbreiden (Arthur)
+- [ ] docker: webPage/flask (Arthur)
+- [ ] readme uitbreiden 
 
 ## DONE
 - [x] pytest history for multiple l-strings
