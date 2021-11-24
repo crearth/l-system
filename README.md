@@ -113,7 +113,8 @@ cd /path/to/project
 
 docker build -t l-system:0.1
 
-docker run --rm -ti -v /tmp/.X11-unix:/tmp/.X11-unix \
+docker run --rm -ti -p 5000:5000
+		    -v /tmp/.X11-unix:/tmp/.X11-unix \
                     -e DISPLAY=$DISPLAY \
 		    l-system:0.1
 ```
