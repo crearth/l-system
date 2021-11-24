@@ -96,7 +96,10 @@ cd /path/to/project
 
 docker build -t l-system:0.1
 
-docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --net=host l-system:0.1
+docker run --rm -ti -v /tmp/.X11-unix:/tmp/.X11-unix \
+                    -v /your/python/files/path:/app \
+                    -e DISPLAY=$DISPLAY \
+		    l-system:0.1
 ```
 Now you can run the main.py file.
 
