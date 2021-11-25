@@ -190,7 +190,7 @@ def drawSave(imageName, screen, width, height): # Subfunction of draw
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
-		screen.getcanvas().postscript(file=imageName)
+		screen.getcanvas().postscript(file=imageName, width=width, height=height)
 
 # Draw the given string by using the translations
 def draw(string, trans, imageName):
