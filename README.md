@@ -3,7 +3,8 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] readme uitbreiden 
-- [ ] pytest history for multiple l-strings
+- [ ] scaling (Matias)
+- [ ] docker file system
 
 ## DONE
 - [x] svg picture on webserver
@@ -24,6 +25,7 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 - [x] comments added yaml action
 - [x] comments made better getArguments
 - [x] docker: webPage/flask (Arthur)
+- [x] pytest history for multiple l-strings
 
 ## Installation
 Clone this repository to your local computer.
@@ -113,7 +115,7 @@ cd /path/to/project
 
 docker build -t l-system:0.1
 
-docker run --rm -ti -p 5000:5000
+docker run --rm -ti -p 5000:5000 \
 		    -v /tmp/.X11-unix:/tmp/.X11-unix \
                     -e DISPLAY=$DISPLAY \
 		    l-system:0.1
