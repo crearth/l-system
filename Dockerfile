@@ -22,5 +22,5 @@ COPY . /l-system
 
 ENV FLASK_APP webPage
 
-#CMD [ "python3", "main.py" ]
-CMD ["bash"]
+CMD [ "python3", "main.py" ]
+#CMD ["bash"]
