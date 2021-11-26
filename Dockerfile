@@ -3,13 +3,11 @@ FROM ubuntu:18.04
 
 # we do not want the apt-get install asking questions
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
-	python \
 	python3 \
-	python-pip \
 	python3-pip \
 	python3-markupsafe \
-	python-tk \
 	python3-tk \
+	x11-xserver-utils \
 	ghostscript
 
 COPY requirements.txt /l-system/
