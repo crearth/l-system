@@ -3,8 +3,6 @@ Assignment Informatica Werktuigen (academic year 2021-2022).
 
 ## TODO
 - [ ] readme uitbreiden 
-- [ ] scaling (Matias)
-- [ ] docker file system
 
 ## DONE
 - [x] svg picture on webserver
