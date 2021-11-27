@@ -345,7 +345,7 @@ def makeAlph(variables, constants):
 
 def getArguments():
 	"""
-	Input: arguments (list)
+	Input: None
 	---------
 	Output: return the name of the outputfile if there is an argument "export", otherwise return None
 	"""
