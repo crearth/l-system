@@ -17,8 +17,6 @@ rules = split[4]
 trans = split[5]
 iterations = split[6]
 lstring = split[7]
-svgFile = open("./static/.lstring.svg", "w")
-svgFile.close()
 svgFile = open("./static/.lstring.svg", "r")
 svgText = svgFile.read()
 
