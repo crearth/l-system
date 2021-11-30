@@ -79,6 +79,7 @@ def drawInit(): # Subfunction from draw
 	Output: Return screen and turtle
 	'''
 	screen = tur.Screen() # Set up screen
+	screen.screensize(1000000000, 1000000000)
 
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle() # Hide the turtle on the screen
@@ -158,7 +159,7 @@ def makeText(coordinates, width, height):
 	# xAdd and yAdd are needed because svg has (0,0) in the top left corner and turtle in the middle of the screen
 	# We will add xAdd to every x and yAdd to every y, this will make the drawing start in the middle of the screen
 	xAdd = width/2
-	yAdd= height/2
+	yAdd = height/2
 
 	svgText = [] # Initialize the list
 	for coord in coordinates:
@@ -190,7 +191,7 @@ def drawSave(imageName, screen, width, height): # Subfunction of draw
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
-		screen.getcanvas().postscript(file=imageName, width=width, height=height)
+		screen.getcanvas().postscript(file=imageName, x=-width/2, y=-height/2, width=width, height=height)
 
 # Draw the given string by using the translations
 def draw(string, trans, imageName):
