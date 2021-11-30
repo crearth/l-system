@@ -6,6 +6,11 @@ def openFile(file):
 	f = open(file,"r")
 	return f
 
+def getResult(file):
+	f = openFile("./tests/results.json")
+	data = getData(f)
+	return data[file]
+
 # Test the lSystem function with the test1.json
 def test_1_lSystem():
 	f = openFile("./tests/test1.json")
@@ -13,7 +18,7 @@ def test_1_lSystem():
 	axiom, rules, variables, constants, trans = getVariables(data)
 	iterations = 4
 	lstring = lSystem(axiom, rules, iterations)
-	assert lstring == "A+B+A-B+A+B-A-B+A+B+A-B-A+B-A-B"
+	assert lstring == getResult("test1.json")
 
 # Test the lSystem function with the test2.json
 def test_2_lSystem():
@@ -22,7 +27,7 @@ def test_2_lSystem():
 	axiom, rules, variables, constants, trans = getVariables(data)
 	iterations = 5
 	lstring = lSystem(axiom, rules, iterations)
-	assert lstring == "ABAABABAABAAB"
+	assert lstring == getResult("test2.json")
 
 # Test the lSystem function with the binary tree (test3.json)
 def test_3_lSystem():
@@ -31,7 +36,7 @@ def test_3_lSystem():
 	axiom, rules, variables, constants, trans = getVariables(data)
 	iterations = 4
 	lstring = lSystem(axiom, rules, iterations)
-	assert lstring == "11111111+[1111+[11+[1+[0-]0-]1+[0-]0-]11+[1+[0-]0-]1+[0-]0-]1111+[11+[1+[0-]0-]1+[0-]0-]11+[1+[0-]0-]1+[0-]0"
+	assert lstring == getResult("test3.json")
 
 # Test the lSystem function with the example of the assignment (test4.json)
 def test_4_lSystem():
@@ -40,7 +45,7 @@ def test_4_lSystem():
 	axiom, rules, variables, constants, trans = getVariables(data)
 	iterations = 3
 	lstring = lSystem(axiom, rules, iterations)
-	assert lstring == "AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]+[+AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]-AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]-AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]]-[-AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]+AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]+AA+[+A-A-A]-[-A+A+A]AA+[+A-A-A]-[-A+A+A]+[+AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]-AA+[+A-A-A]-[-A+A+A]]-[-AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]+AA+[+A-A-A]-[-A+A+A]]]"
+	assert lstring == getResult("test4.json")
 
 # Test the lSystem function with tests5.json
 def test_5_lSystem():
@@ -49,7 +54,7 @@ def test_5_lSystem():
 	axiom, rules, variables, constants, trans = getVariables(data)
 	iterations = 3
 	lstring = lSystem(axiom, rules, iterations)
-	assert lstring == "F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGGGGGG-GGGGGGGG"
+	assert lstring == getResult("test5.json")
 
 def test_4_hisotry():
 	f = openFile("./tests/test4.json")
