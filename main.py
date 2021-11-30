@@ -172,7 +172,7 @@ def makeText(coordinates, width, height):
 		svgText.append('<line x1="' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
 
 	# Insert the start svg tag
-	svgText.insert(0, '<svg width="' + str(width/2) + '" height="' + str(height/2) + '">\n')
+	svgText.insert(0, '<svg width="' + str(width) + '" height="' + str(height) + '">\n')
 	# Add the end svg tag
 	svgText.append('</svg>')
 	svg.writelines(svgText) # Write the lines in the file
