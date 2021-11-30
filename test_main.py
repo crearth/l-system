@@ -56,6 +56,8 @@ def test_5_lSystem():
 	lstring = lSystem(axiom, rules, iterations)
 	assert lstring == getResult("test5.json")
 
+# Testing the history function
+
 def test_4_hisotry():
 	f = openFile("./tests/test4.json")
 	data = getData(f)
