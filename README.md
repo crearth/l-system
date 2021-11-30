@@ -1,30 +1,6 @@
 # l-system
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
-## TODO
-- [ ] readme uitbreiden 
-
-## DONE
-- [x] svg picture on webserver
-- [x] canvas scaling
-- [x] l-system itself
-- [x] system history
-- [x] checking incorrect input
-- [x] extended translations (push, pop, color)
-- [x] exporting l-system drawings
-- [x] base of web server
-- [x] web server: l-system drawings on web server
-- [x] configure a CI pipeline
-- [x] history file backups
-- [x] restoring database from a backup
-- [x] unit testing: add 1 history check
-- [x] split draw in functions
-- [x] layout website (header added)
-- [x] comments added yaml action
-- [x] comments made better getArguments
-- [x] docker: webPage/flask (Arthur)
-- [x] pytest history for multiple l-strings
-
 ## Installation
 Clone this repository to your local computer.
 ```bash
@@ -56,13 +32,22 @@ Run the main.py file. It will ask you wich configuration file it should use and 
 
 ### Configuration file
 When you run the main.py file, the program will aks for a configuration file. The configuration file has to be a json file. There is an example.json file in this repository. These are the supported translations:
-* angle: turn 
+* angle: turn left
 * draw: draw a line
 * forward: move forward without drawing a line
 * nop: do nothing
 * push: push the current drawing state on the stack
 * pop: replace the current drawing state with the one on top of the stack
 * color: change the color from this point to the given name
+
+with every translation, there is a value or variable:
+* angle: amount of degrees
+* draw: amount of pixels
+* forward: amount of pixels
+* nop: value doesn't matter
+* push: value doesn't matter
+* pop: value doens't matter
+* color: name of the color you want, without capitals
 
 ### History
 A history.txt file will be created when running the main.py for the first time. Every time you run the program, a new line will be added with the configuration information and timestamp.  
@@ -120,6 +105,3 @@ docker run --rm -ti -p 5000:5000 \
 ```
 On macOS you should change $DISPLAY to ${HOSTNAME}:0
 Now you can run the main.py file.
-
-Things that don't work yet:
-* web server
