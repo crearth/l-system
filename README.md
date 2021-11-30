@@ -1,29 +1,6 @@
 # l-system
 Assignment Informatica Werktuigen (academic year 2021-2022).
 
-## TODO
-
-## DONE
-- [x] svg picture on webserver
-- [x] canvas scaling
-- [x] l-system itself
-- [x] system history
-- [x] checking incorrect input
-- [x] extended translations (push, pop, color)
-- [x] exporting l-system drawings
-- [x] base of web server
-- [x] web server: l-system drawings on web server
-- [x] configure a CI pipeline
-- [x] history file backups
-- [x] restoring database from a backup
-- [x] unit testing: add 1 history check
-- [x] split draw in functions
-- [x] layout website (header added)
-- [x] comments added yaml action
-- [x] comments made better getArguments
-- [x] docker: webPage/flask (Arthur)
-- [x] pytest history for multiple l-strings
-
 ## Installation
 Clone this repository to your local computer.
 ```bash
