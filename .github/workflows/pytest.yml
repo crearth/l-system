@@ -17,10 +17,6 @@ jobs:
         with:
           python-version: "3.x"
 
-      # Install python virtual environment
-      - name: Install venv
-        run: |
-          python -m venv l-venv
       # Install dependencies in requirements.txt
       - name: Install dependencies
         run: |
