@@ -93,7 +93,7 @@ def drawDraw(string, trans, screen, t):
 	Input: String , trans is the translations (dictionary), screen is a turtle screen
 	t is the turtle itself
 	----------
-	Ouput: Return screen and turtle
+	Ouput: Return screen, turtle, width, height, xMax, xMin, yMax, yMin
 	'''
 
 	stack = [] # Stack will be used to push and pop between positions
@@ -101,6 +101,7 @@ def drawDraw(string, trans, screen, t):
 	svgCoordinates = [] # Initialize the list
 
 	width, height = 0,0 # Start width and height width 0,0
+	xMax, xMin, yMax, yMin = 0, 0, 0, 0 # Start x and y 0
 
 	for symbol in string: # Go over every symbol in the generated lstring
 		if symbol in trans: # Check if the el can get translated
@@ -135,14 +136,20 @@ def drawDraw(string, trans, screen, t):
 			width = abs(max(width, abs(t.pos()[0])))
 			height = abs(max(height, abs(t.pos()[1])))
 
-	# Multiply width 2.2 so we have a border around the drawing
-	width *= 2.2
-	height *= 2.2
+			# Set xMax, xMin, yMax, yMin
+			xMax = max(xMax, t.pos()[0])
+			xMin = min(xMin, t.pos()[0])
+			yMax = max(yMax, t.pos()[1])
+			yMin = min(yMin, t.pos()[1])
+
+	# Multiply with 2.2 so we have a border around the drawing
+	width *= 2
+	height *= 2
 
 	# Write the svg file width the coordinates of all the lines in the drawing
 	makeText(svgCoordinates, width, height)
 
-	return screen, t, width, height
+	return screen, t, width, height, xMax, xMin, yMax, yMin
 
 
 # Make the text for the svg file
@@ -172,7 +179,7 @@ def makeText(coordinates, width, height):
 		svgText.append('<line x1="' + str(x1+xAdd) + '" y1="' + str(-y1+yAdd) + '" x2="' + str(x2+xAdd) + '" y2="' + str(-y2+yAdd) + '" style="stroke:rgb(0,0,0);stroke-width:0.5" />\n')
 
 	# Insert the start svg tag
-	svgText.insert(0, '<svg width="' + str(width) + '" height="' + str(height) + '">\n')
+	svgText.insert(0, '<svg width="' + str(width*2) + '" height="' + str(height*2) + '">\n')
 	# Add the end svg tag
 	svgText.append('</svg>')
 	svg.writelines(svgText) # Write the lines in the file
@@ -180,7 +187,7 @@ def makeText(coordinates, width, height):
 	svg.close() # Close file
 
 # Save the drawing
-def drawSave(imageName, screen, width, height): # Subfunction of draw
+def drawSave(imageName, screen, width, height, xMax, xMin, yMax, yMin): # Subfunction of draw
 	'''
 	Input: ImageName if there is one, screen and turtle
 	----------
@@ -190,7 +197,7 @@ def drawSave(imageName, screen, width, height): # Subfunction of draw
 	screen.update() # Update screen after drawing
 	# If the imageName is not None, make an eps file with the name imageName
 	if imageName != None:
-		screen.getcanvas().postscript(file=imageName, x=-width/2, y=-height/2, width=width, height=height)
+		screen.getcanvas().postscript(file=imageName, x=xMin, y=-yMax, width=xMax-xMin, height=yMax-yMin)
 
 # Draw the given string by using the translations
 def draw(string, trans, imageName):
@@ -202,8 +209,8 @@ def draw(string, trans, imageName):
 	"""
 
 	screen, t = drawInit() # Set up screen and turtle (t)
-	screen, t, width, height = drawDraw(string, trans, screen, t) # Make the drawing
-	drawSave(imageName, screen, width, height) # Save the drawing and export function
+	screen, t, width, height, xMax, xMin, yMax, yMin = drawDraw(string, trans, screen, t) # Make the drawing
+	drawSave(imageName, screen, width, height, xMax, xMin, yMax, yMin) # Save the drawing and export function
 
 # Check if axiom is correct data type
 def checkAxiom(axiom, alph):
