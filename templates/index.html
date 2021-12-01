@@ -10,6 +10,9 @@ table, tr, th{
 	border: 1px solid black;
 	border-collapse: collapse;
 }
+.svg {
+	margin: 10px;
+}
 </style>
 </head>
 
@@ -37,8 +40,10 @@ table, tr, th{
                 <th> {{endstring}} </th>
         </tr>
 </table>
-{% autoescape false %}
-	{{svgText}}
-{% endautoescape %}
+<div class="svg">
+	{% autoescape false %}
+		{{svgText}}
+	{% endautoescape %}
+</div>
 </body>
 </html>
