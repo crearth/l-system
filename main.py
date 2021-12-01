@@ -142,7 +142,7 @@ def drawDraw(string, trans, screen, t):
 			yMax = max(yMax, t.pos()[1])
 			yMin = min(yMin, t.pos()[1])
 
-	# Multiply with 2.2 so we have a border around the drawing
+	# Multiply with 2 because width and height is from center to the outer point in x and y
 	width *= 2
 	height *= 2
 
