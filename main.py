@@ -142,7 +142,7 @@ def drawDraw(string, trans, screen, t):
 			yMax = max(yMax, t.pos()[1])
 			yMin = min(yMin, t.pos()[1])
 
-	# Multiply with 2.2 so we have a border around the drawing
+	# Multiply with 2 because width and height is from center to the outer point in x and y
 	width *= 2
 	height *= 2
 
@@ -288,9 +288,9 @@ def checkTrans(trans, alph, pos_translations):
 			if not isinstance(trans[tran][1], str):
 				return False
 
-		elif not (isinstance(trans[tran][1], int) or isinstance(trans[tran][1], float)): # The parameter must be an int
+		elif not (isinstance(trans[tran][1], int) or isinstance(trans[tran][1], float)): # The parameter must be an int or float
 			return False
-		elif not trans[tran][0] in pos_translations: # Check if the tran>
+		elif not trans[tran][0] in pos_translations: # Check if the trans is the list of possible translations
 			return False
 
 	return True
