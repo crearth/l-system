@@ -79,7 +79,6 @@ def drawInit(): # Subfunction from draw
 	Output: Return screen and turtle
 	'''
 	screen = tur.Screen() # Set up screen
-	screen.screensize(1000000000, 1000000000)
 
 	t = tur.Turtle() # Initialize the turtle and give it the name "t"
 	t.hideturtle() # Hide the turtle on the screen
