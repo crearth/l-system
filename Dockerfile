@@ -18,4 +18,3 @@ RUN pip3 install -r requirements.txt
 COPY . /l-system
 
 CMD [ "python3", "main.py" ]
-#CMD ["bash"]
