@@ -334,7 +334,7 @@ def addHistory(axiom, rules, trans, iterations, lstring, variables, constants):
 	----------
 	Output: the line with history information that has to be written in history.txt
 	"""
-	f = open("history.txt","a") # Open the history.txt file (or make one if it doesn't exist) in the append mode 
+	f = open("./logs/history.txt","a") # Open the history.txt file (or make one if it doesn't exist) in the append mode 
 	timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S") # Get current timestamp in day/month/year hour:minute:second notation
 	info = timestamp + "\t" + str(variables) + "\t" + str(constants) + "\t" + axiom + "\t" + str(rules) + "\t" + str(trans) + "\t" + str(iterations) + "\t" + str(lstring) + "\n" # Concatenate all the input to one line with tabs between two variables, also convert the variable to a string if needed to be able to concatenate
 	f.write(info) # Write the history data to the file

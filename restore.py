@@ -19,7 +19,7 @@ f = input("What history file would you like to restore? (0 = break loop): ")
 while f != "0": # User can give "0" as input to stop program
 	if f in onlyfiles: # If the input is in the onlyfiles
 
-		history = open("history.txt", "r+") # Open history file
+		history = open("./logs/history.txt", "r+") # Open history file
 		backup = open("/home/" + str(username) + "/.l-systems/" + f) # Open backup file
 		history.truncate(0) # Delete content of history.txt
 		content = backup.read() # Read content of backup file

@@ -4,7 +4,7 @@ from flask import Flask, render_template
 # Set app
 app = Flask(__name__)
 # Get last line of history.txt file
-with open("history.txt", "r") as f:
+with open("./logs/history.txt", "r") as f:
 	last_line = f.readlines()[-1]
 
 split = last_line.split("\t") # Split last_line in list were there was a tab in between

@@ -50,7 +50,7 @@ with every translation, there is a value or variable:
 * color: name of the color you want, without capitals
 
 ### History
-A history.txt file will be created when running the main.py for the first time. Every time you run the program, a new line will be added with the configuration information and timestamp.  
+A history.txt file will be created in the directory 'logs' when running the main.py for the first time. Every time you run the program, a new line will be added with the configuration information and timestamp.  
 
 ### History backups
 If you wish, you can make backups on a hourly rate with the bash script `backup.sh`. Add the following to your crontab (command crontab -e):
