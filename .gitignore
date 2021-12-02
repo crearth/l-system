@@ -8,6 +8,9 @@ venv.bak/
 # history file
 history.txt
 
+# keep logs folder
+!logs/.gitkeep
+
 # eps files (exports)
 *.eps
 
