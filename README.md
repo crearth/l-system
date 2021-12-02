@@ -62,6 +62,13 @@ If you wish, you can make backups on a hourly rate with the bash script `backup.
 0 * * * * cd /path/to/the/project/ && ./backup.sh >/dev/null 2>&1
 ``` 
 
+### Restoring a history backup
+There is a Python script `restore.py` that you can run if you wish to restore the history database to one of its backups. Simply run the script with the following command:
+```bash
+python3 restore.py
+```
+The script will show you all the possible history backups, you have to pick one and the chosen history backup will be copied in place of the current history file.
+
 ### Exporting the drawing
 Currently, only .eps files are supported.
 You can export the drawed l-system with the following command:
@@ -71,7 +78,7 @@ python3 main.py --export <filename>
 Replace `<filename>` with the name of the file you want, followed by the extension .eps.
 
 ### Web server
-You can view the information and a picture of your latest drawing with the following commands:
+You can view the information and a svg image of your latest drawing with the following commands:
 ```bash
 export FLASK_APP=webPage
 flask run
