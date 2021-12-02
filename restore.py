@@ -26,6 +26,7 @@ while f != "0": # User can give "0" as input to stop program
 		history.write(content) # Write backup content in history.txt
 		history.close() # Close history file
 		backup.close() # Close backup file
-		remove("static/.lstring.svg") # Removes lastDrawing so it doesn't show up on the webpage
+		svg = open("./static/.lstring.svg", "w")
+		svg.write('<svg height="30" width="300"> <text x="0" y="15" fill="red">You restored the history, there is no image.</text> </svg>') # Replaces the svg so it doesn't show up on the webpage
 		break
 	f = input("What history file would you like to restore? (0 = break loop): ")
