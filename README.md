@@ -28,7 +28,11 @@ sudo apt-get install python3-tk
 ```
 
 ## Use
-Run the main.py file. It will ask you wich configuration file it should use and how many iterations you want. You can find some example configuration files in this repository.
+Run the main.py file.
+```bash
+python3 main.py
+```
+It will ask you which configuration file it should use and how many iterations you want. You can find some example configuration files in this repository.
 
 ### Configuration file
 When you run the main.py file, the program will aks for a configuration file. The configuration file has to be a json file. There is an example.json file in this repository. These are the supported translations:
@@ -50,10 +54,10 @@ with every translation, there is a value or variable:
 * color: name of the color you want, without capitals
 
 ### History
-A history.txt file will be created in the directory 'logs' when running the main.py for the first time. Every time you run the program, a new line will be added with the configuration information and timestamp.  
+A history.txt file will be created in the directory 'logs' when running the main.py for the first time. Every time you run the program, a new line will be added with the configuration information, timestamp and generated l-string.
 
 ### History backups
-If you wish, you can make backups on a hourly rate with the bash script `backup.sh`. Add the following to your crontab (command crontab -e):
+If you wish, you can make backups on a hourly rate with the bash script `backup.sh`. Add the following to your crontab (command crontab -e, replace /path/to/the/project with the path to the project):
 ```bash
 0 * * * * cd /path/to/the/project/ && ./backup.sh >/dev/null 2>&1
 ``` 
@@ -77,13 +81,13 @@ Access the webpage with this url: `http://localhost:5000/index`.
 ### Docker
 You can build a docker image and run a docker container with the project files.
 Important: in order for docker to show you the drawing, you should first run the following commands:
-LINUX
+#### LINUX
 ```bash
 sudo apt-get install x11-xserver-utils
 
 xhost +
 ```
-MACOS (thanks to [this gist](https://gist.github.com/cschiewek/246a244ba23da8b9f0e7b11a68bf3285))
+#### MACOS (thanks to [this gist](https://gist.github.com/cschiewek/246a244ba23da8b9f0e7b11a68bf3285))
 1. install [XQuartz](https://xquartz.org)
 2. launch XQuartz, under the XQuartz menu, select Preferences
 3. go to security tab and ensure "allow connections from network clients" is checked
@@ -92,16 +96,18 @@ MACOS (thanks to [this gist](https://gist.github.com/cschiewek/246a244ba23da8b9f
 xhost + ${hostname}
 export HOSTNAME='your_hostname.local'
 ```
+
+#### Docker container
 Then you can start with docker:
 ```bash
 cd /path/to/project
 
-docker build -t l-system:0.1
+docker build -t l-system:latest
 
-docker run --rm -ti -p 5000:5000 \
+docker run --rm -ti -v ~/.l-system-logs:/logs \
 		    -v /tmp/.X11-unix:/tmp/.X11-unix \
                     -e DISPLAY=$DISPLAY \
-		    l-system:0.1
+		    l-system:latest
 ```
 On macOS you should change $DISPLAY to ${HOSTNAME}:0
-Now you can run the main.py file.
+Now the container will ask you the configuration file and the number of iterations.
