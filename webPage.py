@@ -26,5 +26,6 @@ def home():
 	# Use index.html as html code for the website and pass in needed variables as arguments
 	return render_template("index.html", timestamp=time, variables=variables, constants=constants, axiom=axiom, rules=rules, translations=trans, iterations=iterations, endstring=lstring, svgText=svgText)
 
+# Run the web server on localhost (0.0.0.0)
 if __name__ == "__main__":
 	app.run(host="0.0.0.0")
