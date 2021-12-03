@@ -14,10 +14,7 @@ history.txt
 # eps files (exports)
 *.eps
 
-# jpg files
-*.jpg
-
-# jpg files in /static
+# svg files in /static
 static/*
 !static/.gitkeep
 
